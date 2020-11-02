@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>135.分发糖果(Hard)(C++&amp;Java) | Hexo</title>
-  <meta name="keywords" content=" LeetCode , 贪心算法 ">
-  <meta name="description" content="135.分发糖果(Hard)(C++&amp;Java) | Hexo">
+  <title>Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="1613d78ea19cc328448ee938c635516c">
 <meta property="og:type" content="article">
@@ -217,43 +217,22 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-135-分发糖果-Hard" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">135.分发糖果(Hard)(C++&amp;Java)</h1>
+        <article id="post-baidu_verify_code-gf6xmBxPWM" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="LeetCode">LeetCode</a> > 
-            
-            <a  data-rel="LeetCode&lt;---&gt;贪心算法">贪心算法</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color4">LeetCode</a>
-            
-            <a class="color5">贪心算法</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-10-31 20:35:58'>2020-10-31 19:06</time>
+            Created At : <time class="date" title='Updated At: 2020-11-02 18:28:04'>2020-11-02 18:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:614</span>
+        <span>Count:1</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -272,7 +251,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="toc-text">问题解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="toc-text">示例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B2"><span class="toc-text">示例2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E5%AE%9E%E7%8E%B0"><span class="toc-text">C++实现</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -288,42 +267,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a>，分发糖果问题，难度：<code>困难</code>。</p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p>
-<p>每个孩子至少分配到 1 个糖果。<br>相邻的孩子中，评分高的孩子必须获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p>
-<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">原题</a></p>
-<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote>
-<p>输入:  [1,0,2]<br>输出:  5<br>解释:  你可以分别给这三个孩子分发 2、1、2 颗糖果。</p>
-</blockquote>
-<h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><blockquote>
-<p>输入:  [1,2,2]<br>输出:  4<br>解释:  你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><code>贪心算法</code>采用贪心的策略，保证每次<code>局部的操作都是当前最优的</code>，从而使最终一步步累计得到的结果是<code>全局最优</code>的。<br>对于本题，贪心策略通过两次遍历实现：<br>所有孩子的糖果数初始化为1，<code>从左往右遍历一遍</code>，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1；<br>再<code>从右往左遍历一遍</code>，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1。</p>
-<ul>
-<li>通过这两次遍历，即将每个孩子都和左右孩子进行了比较。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一侧的大小关系。<br>在样例中，我们初始化糖果分配为<code>[1,1,1]</code>，第一次遍历更新后的结果为<code>[1,1,2]</code>，第二次遍历更新后的结果为<code>[2,1,2]</code>。</li>
-</ul>
-<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><pre><code class="cpp">int candy(vector&lt;int&gt;&amp; ratings) &#123;
-    int size=ratings.size();
-    vector&lt;int&gt; num(size,1);
-    for(int i=1;i&lt;size;i++)
-    &#123;
-        if(ratings[i]&gt;ratings[i-1])
-        &#123;
-            num[i]=num[i-1]+1;
-        &#125;
-    &#125;
-    for(int i=size-1;i&gt;0;i--)
-    &#123;
-        if(ratings[i-1]&gt;ratings[i])
-        &#123;
-            if(num[i-1]&gt;num[i]) continue;
-            else num[i-1]=num[i]+1;
-        &#125;
-    &#125;
-    return accumulate(num.begin(),num.end(),0);
-&#125;</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a></p>
-
+        1613d78ea19cc328448ee938c635516c
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 hustgroup_2022@163.com </span>
     </div>
