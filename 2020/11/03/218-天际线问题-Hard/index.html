@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>135.分发糖果(Hard)(C++&amp;Java) | Hexo</title>
-  <meta name="keywords" content=" LeetCode , 贪心算法 ">
-  <meta name="description" content="135.分发糖果(Hard)(C++&amp;Java) | Hexo">
+  <title>218.天际线问题(Hard)(Python) | Hexo</title>
+  <meta name="keywords" content=" LeetCode , 分治算法 , 大顶堆 ">
+  <meta name="description" content="218.天际线问题(Hard)(Python) | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="LeetCode 218，天际线问题，难度：困难。 问题解析问题描述城市中的天际线是从远处望去城市中所有建筑物形成的外部轮廓。假设每个城市为绝对平坦且高度为零的表面上的完美矩形，以三元组表示（左边界，右边界，高度），且每个建筑物都在合理范围内。 根据给定的三元组，绘制出城市的轮廓线，这些轮廓线输出是关键点的列表，关键点是每个水平线断的左端点。任何两个相邻建筑物之间的地面也视为天际线轮廓的一部分。具">
 <meta property="og:type" content="article">
@@ -247,9 +247,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-135-分发糖果-Hard" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-218-天际线问题-Hard" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">135.分发糖果(Hard)(C++&amp;Java)</h1>
+        <h1 class="article-title">218.天际线问题(Hard)(Python)</h1>
     
     <div class="article-meta">
         
@@ -261,7 +261,9 @@
             
             <a  data-rel="LeetCode">LeetCode</a> > 
             
-            <a  data-rel="LeetCode&lt;---&gt;贪心算法">贪心算法</a>
+            <a  data-rel="LeetCode&lt;---&gt;分治算法">分治算法</a> > 
+            
+            <a  data-rel="LeetCode&lt;---&gt;分治算法&lt;---&gt;大顶堆">大顶堆</a>
             
         </span>
         
@@ -271,19 +273,21 @@
             
             <a class="color4">LeetCode</a>
             
-            <a class="color5">贪心算法</a>
+            <a class="color5">分治算法</a>
+            
+            <a class="color4">大顶堆</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-10-31 20:35:58'>2020-10-31 19:06</time>
+            Created At : <time class="date" title='Updated At: 2020-11-03 12:11:52'>2020-11-03 10:06</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:614</span>
+        <span>Count:1.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -302,7 +306,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="toc-text">问题解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="toc-text">示例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B2"><span class="toc-text">示例2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E5%AE%9E%E7%8E%B0"><span class="toc-text">C++实现</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="toc-text">问题解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="toc-text">示例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python%E5%AE%9E%E7%8E%B0"><span class="toc-text">Python实现</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -318,41 +322,108 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a>，分发糖果问题，难度：<code>困难</code>。</p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p>
-<p>每个孩子至少分配到 1 个糖果。<br>相邻的孩子中，评分高的孩子必须获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p>
-<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">原题</a></p>
+        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-skyline-problem/">LeetCode 218</a>，天际线问题，难度：<code>困难</code>。</p>
+<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>城市中的天际线是从远处望去城市中所有建筑物形成的外部轮廓。假设每个城市为绝对平坦且高度为零的表面<br>上的完美矩形，以三元组表示（左边界，右边界，高度），且每个建筑物都在合理范围内。</p>
+<p>根据给定的三元组，绘制出城市的轮廓线，这些轮廓线输出是关键点的列表，关键点是每个水平线断的左端点。<br>任何两个相邻建筑物之间的地面也视为天际线轮廓的一部分。具体描述参考leetcode原题。</p>
+<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-skyline-problem/">原题</a></p>
 <h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote>
-<p>输入:  [1,0,2]<br>输出:  5<br>解释:  你可以分别给这三个孩子分发 2、1、2 颗糖果。</p>
+<p>输入:  [ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ]<br>输出:  [ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ]</p>
 </blockquote>
-<h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><blockquote>
-<p>输入:  [1,2,2]<br>输出:  4<br>解释:  你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><code>贪心算法</code>采用贪心的策略，保证每次<code>局部的操作都是当前最优的</code>，从而使最终一步步累计得到的结果是<code>全局最优</code>的。<br>对于本题，贪心策略通过两次遍历实现：<br>所有孩子的糖果数初始化为1，<code>从左往右遍历一遍</code>，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1；<br>再<code>从右往左遍历一遍</code>，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1。</p>
-<ul>
-<li>通过这两次遍历，即将每个孩子都和左右孩子进行了比较。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一侧的大小关系。<br>在样例中，我们初始化糖果分配为<code>[1,1,1]</code>，第一次遍历更新后的结果为<code>[1,1,2]</code>，第二次遍历更新后的结果为<code>[2,1,2]</code>。</li>
-</ul>
-<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><pre><code class="cpp">int candy(vector&lt;int&gt;&amp; ratings) &#123;
-    int size=ratings.size();
-    vector&lt;int&gt; num(size,1);
-    for(int i=1;i&lt;size;i++)
-    &#123;
-        if(ratings[i]&gt;ratings[i-1])
-        &#123;
-            num[i]=num[i-1]+1;
-        &#125;
-    &#125;
-    for(int i=size-1;i&gt;0;i--)
-    &#123;
-        if(ratings[i-1]&gt;ratings[i])
-        &#123;
-            if(num[i-1]&gt;num[i]) continue;
-            else num[i-1]=num[i]+1;
-        &#125;
-    &#125;
-    return accumulate(num.begin(),num.end(),0);
-&#125;</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>这题有点难，看了官方题解，“有那么多方法你偏偏选了最难的一种”，以及精选的一种神仙解法，<br>神仙解法利用堆。不明白为什么能够想出来这样解，这里仅作方法的记录。</p>
+<p>解法一：分治算法。把给定的一排建筑物不断的二分切割，最小单元为[]或者一个建筑物。对于一个<br>建筑物来说，天际线即为（左端点，高度）（右端点，零）。分割之后再归并，归并的步骤如下：<br>left ==&gt; 左天际线轮廓， right ==&gt; 右天际线轮廓<br>ileft ==&gt; 左天际线指针， iright ==&gt; 右天际线指针<br>lHeight ==&gt;左天际线当前高度， rHeight ==&gt; 右天际线当前高度<br>结果数组初始化为空<br>if left[ileft] &lt; right[iright]: 说明左天际线在右天际线的左边，考虑更新左边<br>    天际线点 = [ left[ileft], max( left[ileft].height, rHeight )<br>    lHeight = left[ileft].height    # 更新当前高度<br>    ileft向前移动一位                  # 更新指针<br>elseif left[ileft] &gt; right[iright]: 说明右天际线在左天际线左边，考虑更新右边<br>    原理同上<br>else: 左天际线和右天际线相同，这时候高度高的会遮住高度低的<br>    天际线点 = [left[ileft], max( left[ileft].height, right[iright].height )<br>    更新lHeight, rHeight<br>    更新ileft, iright<br>如果结果数组为空或者当前天际线点的高度和结果中最后一个点的高度不同：<br>    这样才把当前天际线点放入结果数组中<br>如果左右某一个天际线轮廓没有处理完，则直接添加到结果数组中</p>
+<p>解法二：神仙的线扫描算法。大体思想如下：把每个建筑物拆分为水平线段两端两个点，即（左端点，高度）<br>（右端点，高度），同时，把左端点的高度变为负的，这样是为了给所有的端点排序时不会出错，也就是两个<br>建筑物拥有同一个左边界时侯特殊情况的处理。堆初始化含0元素。初始化最大高度为0。<br>对排序之后的所有端点遍历：<br>如果遇到左端点，恢复高度并入堆，如果是右端点，则从堆中除掉这个高度。<br>从堆中弹出最大元素，为当前的最大高度，如果最大高度改变了，说明发生了转折，则记录下当前天际线点为<br>（端点，最大高度）并汇入结果中。</p>
+<p>多说两句，分治算法可能是比较好想，但归并的过程确实是比较复杂难想。解法二就想不到了，解法二中的<br>高度变负技巧、堆中去掉一个元素、堆初始化为0，比较高级。</p>
+<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><pre><code class="python">from typing import List
+
+class Solution:
+
+    &quot;&quot;&quot;
+    解法一：divide and conquer
+    &quot;&quot;&quot;
+    def getSkyline(self, buildings: List[List[int]]) -&gt; List[List[int]]:
+
+        if len(buildings) == 0:
+            return []
+        if len(buildings) == 1:
+            return [ [buildings[0][0], buildings[0][2]], [buildings[0][1], 0] ]    # 左天际线， 右天际线
+
+        mid = len(buildings) // 2
+        left = self.getSkyline(buildings[:mid])
+        right = self.getSkyline(buildings[mid:])
+
+        return self.__merge(left, right)
+
+    def __merge(self, left, right):
+
+        hleft, hright = 0, 0     # 记录当前的高度
+        ileft, iright = 0, 0     # 左右两边的指针
+        res = []
+        while ileft &lt; len(left) and iright &lt; len(right):
+
+            # 如果左边的x坐标小于右边的x坐标，那么更新左边的
+            if left[ileft][0] &lt; right[iright][0]:
+                # 当前天际线
+                cp = [left[ileft][0], max(left[ileft][1], hright)]
+                # 当前高度
+                hleft = left[ileft][1]
+                ileft += 1
+            # 如果左边的x坐标大于右边的x左边，那么更新右边的
+            elif left[ileft][0] &gt; right[iright][0]:
+                # 当前天际线
+                cp = [right[iright][0], max(hleft, right[iright][1])]
+                hright = right[iright][1]
+                iright += 1
+            # 如果左右两边的x相等，那么高度较小的会被遮挡住，左右同时更新
+            else:
+                cp = [left[ileft][0], max(left[ileft][1], right[iright][1])]
+                hleft, hright = left[ileft][1], right[iright][1]
+                ileft += 1
+                iright += 1
+
+            # 当前最大高度不等于之前的最大高度时，才将当前的cp放入结果
+            if len(res) == 0 or cp[1] != res[-1][1]:
+                res.append(cp)
+        res.extend(left[ileft:] or right[iright:])    # 此处不能用append方法，因为left或者right本身是一个二维数组
+        return res
+
+
+    &quot;&quot;&quot;
+    解法二：神仙解法，利用堆，线扫描，小技巧
+    &quot;&quot;&quot;
+    def getSkyline2(self, buildings: List[List[int]]) -&gt; List[List[int]]:
+        # step 1: 将每个building分成左端点和右端点，即高度横线的两个端点
+        all = []
+        for build in buildings:
+            all.append([build[0], -build[2]])    # 左端点， 负高度以排序
+            all.append([build[1], build[2]])       # 右端点， 正高度
+        # step 2： 给all排序，这样会根据x排序，如果x相同，左端点因为是负值会排在右端点前面，
+        all.sort()
+
+        # step 3: 开始扫描，如果是左端点，入大顶堆，如果是右端点，从堆中去掉该点对应的高度
+        # 从堆中去掉一个元素目前还没有实现，因此以复杂度换简单
+        # 大顶堆记录的是当前高度以及最大高度
+        # 如果最大高度变了，说明出现了转折点，那么填入结果
+        res = []
+        hheap = [0]
+        last = [0, 0]     # 记录上一个时刻的天际线点
+        for p in all:
+            if p[1] &lt; 0:    # 左端点，高度入堆
+                hheap.append(-p[1])
+            else:           # 右端点，高度除堆
+                hheap.remove(p[1])
+
+            # 大顶堆弹出最大元素，为当前最大高度
+            maxheight = max(hheap)
+
+            # 如果当前高度不同于前一高度，则说明发生了转折
+            if maxheight != last[1]:
+                last[0] = p[0]
+                last[1] = maxheight
+                res.append([p[0],maxheight])    # 此处如果直接append(last)存入的是对last的引用，如果last改变，那么res中的内容也会改变
+
+        return res
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-skyline-problem/">LeetCode 218</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 hustgroup_2022@163.com </span>
