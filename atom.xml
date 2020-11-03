@@ -81,11 +81,11 @@
   </entry>
   
   <entry>
-    <title>135.分发糖果(Hard)(C++&amp;Java)</title>
+    <title>test</title>
     <link href="https://www.hust2022.cn/2020/10/31/test/"/>
     <id>https://www.hust2022.cn/2020/10/31/test/</id>
     <published>2020-10-31T11:06:53.000Z</published>
-    <updated>2020-10-31T12:35:58.312Z</updated>
+    <updated>2020-11-03T13:22:35.144Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a>，分发糖果问题，难度：<code>困难</code>。</p><h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p><p>每个孩子至少分配到 1 个糖果。<br>相邻的孩子中，评分高的孩子必须获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p><p>More info: <a href="https://leetcode-cn.com/problems/candy/">原题</a></p><h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote><p>输入:  [1,0,2]<br>输出:  5<br>解释:  你可以分别给这三个孩子分发 2、1、2 颗糖果。</p></blockquote><h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><blockquote><p>输入:  [1,2,2]<br>输出:  4<br>解释:  你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p></blockquote><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><code>贪心算法</code>采用贪心的策略，保证每次<code>局部的操作都是当前最优的</code>，从而使最终一步步累计得到的结果是<code>全局最优</code>的。<br>对于本题，贪心策略通过两次遍历实现：<br>所有孩子的糖果数初始化为1，<code>从左往右遍历一遍</code>，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1；<br>再<code>从右往左遍历一遍</code>，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1。</p><ul><li>通过这两次遍历，即将每个孩子都和左右孩子进行了比较。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一侧的大小关系。<br>在样例中，我们初始化糖果分配为<code>[1,1,1]</code>，第一次遍历更新后的结果为<code>[1,1,2]</code>，第二次遍历更新后的结果为<code>[2,1,2]</code>。</li></ul><h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><pre><code class="cpp">int candy(vector&lt;int&gt;&amp; ratings) &#123;    int size=ratings.size();    vector&lt;int&gt; num(size,1);    for(int i=1;i&lt;size;i++)    &#123;        if(ratings[i]&gt;ratings[i-1])        &#123;            num[i]=num[i-1]+1;        &#125;    &#125;    for(int i=size-1;i&gt;0;i--)    &#123;        if(ratings[i-1]&gt;ratings[i])        &#123;            if(num[i-1]&gt;num[i]) continue;            else num[i-1]=num[i]+1;        &#125;    &#125;    return accumulate(num.begin(),num.end(),0);&#125;</code></pre><p>More info: <a href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a></p>]]></content>
     
