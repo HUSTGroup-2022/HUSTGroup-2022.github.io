@@ -1,548 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>135.分发糖果(Hard)(C++&amp;Java)</title>
-    <url>/2020/10/31/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C-Hard/</url>
-    <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a>，分发糖果问题，难度：<code>困难</code>。</p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p>
-<p>每个孩子至少分配到 1 个糖果。<br>相邻的孩子中，评分高的孩子必须获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p>
-<p>More info: <a href="https://leetcode-cn.com/problems/candy/">原题</a></p>
-<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote>
-<p>输入:  [1,0,2]<br>输出:  5<br>解释:  你可以分别给这三个孩子分发 2、1、2 颗糖果。</p>
-</blockquote>
-<h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><blockquote>
-<p>输入:  [1,2,2]<br>输出:  4<br>解释:  你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><code>贪心算法</code>采用贪心的策略，保证每次<code>局部的操作都是当前最优的</code>，从而使最终一步步累计得到的结果是<code>全局最优</code>的。<br>对于本题，贪心策略通过两次遍历实现：<br>所有孩子的糖果数初始化为1，<code>从左往右遍历一遍</code>，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1；<br>再<code>从右往左遍历一遍</code>，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1。</p>
-<ul>
-<li>通过这两次遍历，即将每个孩子都和左右孩子进行了比较。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一侧的大小关系。<br>在样例中，我们初始化糖果分配为<code>[1,1,1]</code>，第一次遍历更新后的结果为<code>[1,1,2]</code>，第二次遍历更新后的结果为<code>[2,1,2]</code>。</li>
-</ul>
-<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><pre><code class="cpp">int candy(vector&lt;int&gt;&amp; ratings) &#123;
-    int size=ratings.size();
-    vector&lt;int&gt; num(size,1);
-    for(int i=1;i&lt;size;i++)
-    &#123;
-        if(ratings[i]&gt;ratings[i-1])
-        &#123;
-            num[i]=num[i-1]+1;
-        &#125;
-    &#125;
-    for(int i=size-1;i&gt;0;i--)
-    &#123;
-        if(ratings[i-1]&gt;ratings[i])
-        &#123;
-            if(num[i-1]&gt;num[i]) continue;
-            else num[i-1]=num[i]+1;
-        &#125;
-    &#125;
-    return accumulate(num.begin(),num.end(),0);
-&#125;</code></pre>
-<p>More info: <a href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a></p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Netlify+hexo+github多电脑多作者维护博客</title>
+      <link href="2020/11/05/Netlify-hexo-github%E5%A4%9A%E7%94%B5%E8%84%91%E5%A4%9A%E4%BD%9C%E8%80%85%E7%BB%B4%E6%8A%A4%E5%8D%9A%E5%AE%A2/"/>
+      <url>2020/11/05/Netlify-hexo-github%E5%A4%9A%E7%94%B5%E8%84%91%E5%A4%9A%E4%BD%9C%E8%80%85%E7%BB%B4%E6%8A%A4%E5%8D%9A%E5%AE%A2/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io">完成后的目录结构</a>。</p><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul><li>安装Node.js（Hexo基于NodeJs，其中npm工具对于网页部署很有用）<br><a href="https://nodejs.org/en/">下载地址</a>，下载推荐安装版本LTS。<br>下载好msi文件后，一路默认，唯独注意在Custom Setup这一步勾选 <code>Add to PATH</code> 添加到系统环境变量(新版本应该都已经默认勾选了)。</li><li>安装Git（源码托管）<br><a href="https://git-for-windows.github.io/">下载地址</a>，exe一路默认安装到底。</li></ul><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>hexo用于部署本博客。<br>首先创建一个新的文件夹，用于放置hexo的基本内容，在cmd窗口下cd到改目录下。</p><p>依次执行：</p><pre><code class="bash">npm i -g hexohexo -v</code></pre><p>查看是否安装完成，此时cmd窗口输出：</p><pre><code class="bash">(base) F:\xuhao\hexo&gt;npm i -g hexoC:\Users\Administrator\AppData\Roaming\npm\hexo -&gt; C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\hexonpm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules\hexo\node_modules\chokidar\node_modules\fsevents):npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)+ hexo@5.2.0added 90 packages from 357 contributors in 39.189s(base) F:\xuhao\hexo&gt;hexo -vhexo-cli: 4.2.0os: Windows_NT 10.0.17134 win32 x64node: 14.15.0v8: 8.4.371.19-node.17uv: 1.40.0zlib: 1.2.11brotli: 1.0.9ares: 1.16.1modules: 83nghttp2: 1.41.0napi: 7llhttp: 2.1.3openssl: 1.1.1gcldr: 37.0icu: 67.1tz: 2020aunicode: 13.0</code></pre><p>利用github部署前还需要安装Deployer部署器，否则会报如下错误</p><pre><code class="bash">ERROR Deployer not found: git</code></pre><p>继续在cmd窗口输入如下命令hexo-deployer-git</p><pre><code class="bash">npm install hexo-deployer-git --save</code></pre><h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><p>在本地创建ssh key，简化之后git提交代码，在Cmd中输入，注意替换成自己的邮箱：</p><pre><code class="bash">ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</code></pre><p>一路回车到底，cmd提示在<code>C:\Users\Administrator/.ssh/id_rsa.pub.</code>路径下生成了id_rsa.pub.的公钥，找到该文件，以记事本形式打开，复制里面的key。<br>来到Github页面，登录自己的github账号之后，在右上角区域找到settings，左边选择<code>SSH and GPG keys</code>，然后New SSH key，title随便填写，粘贴id_rsa.pub里面的key，保存。<br>为了验证是否成功，在cmd页面输入</p><pre><code class="bash">ssh -T git@github.com</code></pre><p>会提示</p><pre><code class="bash">Hi HUSTGroup-2022! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre><p>代表已经连接成功。<br>此时已基本大功告成，但如果此时通过运行$ hexo deploy运行网站，会报出如下错误，意思是我们还没有设置user.email和user.name。</p><pre><code class="bash">*** Please tell me who you are.Run  git config --global user.email &quot;you@example.com&quot;  git config --global user.name &quot;Your Name&quot;to set your account&#39;s default identity.Omit --global to set the identity only in this repository.fatal: unable to auto-detect email address (got &#39;Him@hongxiaoxin.(none)&#39;)error: src refspec HEAD does not match any.error: failed to push some refs to &#39;git@github.com:ghxiaoxiao/ghxiaoxiao.github.io&#39;FATAL Something&#39;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.htmlError: Spawn failed    at ChildProcess.&lt;anonymous&gt; (d:\hexo\blog\node_modules\hexo-util\lib\spawn.js:52:19)    at emitTwo (events.js:126:13)    at ChildProcess.emit (events.js:214:7)    at ChildProcess.cp.emit (d:\hexo\blog\node_modules\cross-spawn\lib\enoent.js:40:29)    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)</code></pre><p>因此，进行如下设置，其中email是你的GitHub绑定的邮箱，用户名是你的GitHub用户名。</p><pre><code class="bash">git config --global user.email &quot;hustgroup_2022@163.com&quot;git config --global user.name &quot;HUSTGroup-2022&quot;</code></pre><h3 id="clone博客源码或拉取博客更新到本地电脑"><a href="#clone博客源码或拉取博客更新到本地电脑" class="headerlink" title="clone博客源码或拉取博客更新到本地电脑"></a>clone博客源码或拉取博客更新到本地电脑</h3><p>对于多电脑多作者维护博客模式，本机第一次进行博客维护时，应该首先clone托管在github上的博客源码。注意，<code>除了第一次，此后无需执行此clone步骤</code>。<br>在cmd窗口下，切换到自己希望存放博客源码的目录，执行：</p><pre><code class="bash">git clone https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io</code></pre><p>然后切换到该源码目录下，可以使用TAB键补全地址：</p><pre><code class="bash">cd HUSTGroup-2022.github.io</code></pre><p><code>对于非第一次进行博客维护的主机，直接执行如下命令而不必执行clone命令，从github拉取最新的更新（因为其他电脑的其他作者可能更新了源码并且托管在github上)：</code><br>首先执行</p><pre><code class="bash">git branch</code></pre><p>查看当前所在github 仓库的分支，若为<code>* source</code>则正确。因为我们在该博客仓库下建立了两个分支，分别为master和source，source中用于存放源码，master中用于存放静态网页。<br>若非source分支，输入</p><pre><code class="bash">git checkout sourcegit branch</code></pre><p>此时已切换到source分支。<br>最后执行</p><pre><code class="bash">git pull</code></pre><p>拉取更新（可能由其它电脑的其他作者更新了博客源码）。</p><h3 id="更新博客"><a href="#更新博客" class="headerlink" title="更新博客"></a>更新博客</h3><p>在本地HUSTGroup-2022.github.io文件夹下，进入source/_posts/文件夹，可以看到里面的.md（markdown文件）存放了网页的markdown源码。<br>在cmd窗口HUSTGroup-2022.github.io目录下，执行（<code>也只需要第一次配置的时候执行，以后都不需要</code>）</p><pre><code class="bash">npm install</code></pre><p>安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。<br><code>原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行</code><br>然后执行</p><pre><code class="bash">hexo new 1105testnew</code></pre><p>建立一个新的.md文件（文件名自取）用于更新博客，可以在source/_posts/文件夹下看到多出了一个1105testnew.md文件。<br>编辑该文件，输入自己希望更新的网页内容。在3-hexo主题下添加多个categories或者tags标签应该换行，以’-‘符号打头，例如：</p><pre><code class="bash">categories:- 前端tags:- Netlify- hexo</code></pre><p>最后，当.md文件更新完后，生成网页，将网页部署到github，同时将源码托管到github。依次执行（#后面是注释）：</p><pre><code class="bash">hexo g #根据更新的源码生成新的网页hexo deploy #根据生成的网页部署到github，同时由Netlify维护的博客网站会得到更新git add . #将本机添加的新的网页源码加入git缓存，准备提交源码到githubgit commit -m &quot;1105&quot; #添加提交到github的commit，“”内可输入任何注释内容，一般情况下不可省略git push -u origin source #如果确定当前在source分支下，也可以仅仅执行 git push指令</code></pre><p>可能会要求输入账号密码，按照提示依次完成，第一行提示之后会弹窗要求确认并打开网页确认：</p><pre><code class="bash">info: please complete authentication in your browser...Username for &#39;https://github.com&#39;:Password for &#39;https://HUSTGroup-2022@github.com&#39;:</code></pre><p>频繁需要输入账号密码应该是https协议的问题，请参考<a href="https://blog.csdn.net/whbing1471/article/details/52066688">更改协议</a><br>More info: <a href="https://www.pianshen.com/article/8216193907/">github建立多分支</a></p>]]></content>
+      
+      
       <categories>
-        <category>LeetCode</category>
-        <category>贪心算法</category>
+          
+          <category> 前端 </category>
+          
       </categories>
-      <tags>
-        <tag>LeetCode</tag>
-        <tag>贪心算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/10/30/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>218.天际线问题(Hard)(Python)</title>
-    <url>/2020/11/03/218-%E5%A4%A9%E9%99%85%E7%BA%BF%E9%97%AE%E9%A2%98-Hard/</url>
-    <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/the-skyline-problem/">LeetCode 218</a>，天际线问题，难度：<code>困难</code>。</p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>城市中的天际线是从远处望去城市中所有建筑物形成的外部轮廓。假设每个城市为绝对平坦且高度为零的表面<br>上的完美矩形，以三元组表示（左边界，右边界，高度），且每个建筑物都在合理范围内。</p>
-<p>根据给定的三元组，绘制出城市的轮廓线，这些轮廓线输出是关键点的列表，关键点是每个水平线断的左端点。<br>任何两个相邻建筑物之间的地面也视为天际线轮廓的一部分。具体描述参考leetcode原题。</p>
-<p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">原题</a></p>
-<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote>
-<p>输入:  [ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ]<br>输出:  [ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ]</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>这题有点难，看了官方题解，“有那么多方法你偏偏选了最难的一种”，以及精选的一种神仙解法，<br>神仙解法利用堆。不明白为什么能够想出来这样解，这里仅作方法的记录。</p>
-<p>解法一：分治算法。把给定的一排建筑物不断的二分切割，最小单元为[]或者一个建筑物。对于一个<br>建筑物来说，天际线即为（左端点，高度）（右端点，零）。分割之后再归并，归并的步骤如下：<br>left ==&gt; 左天际线轮廓， right ==&gt; 右天际线轮廓<br>ileft ==&gt; 左天际线指针， iright ==&gt; 右天际线指针<br>lHeight ==&gt;左天际线当前高度， rHeight ==&gt; 右天际线当前高度<br>结果数组初始化为空<br>if left[ileft] &lt; right[iright]: 说明左天际线在右天际线的左边，考虑更新左边<br>    天际线点 = [ left[ileft], max( left[ileft].height, rHeight )<br>    lHeight = left[ileft].height    # 更新当前高度<br>    ileft向前移动一位                  # 更新指针<br>elseif left[ileft] &gt; right[iright]: 说明右天际线在左天际线左边，考虑更新右边<br>    原理同上<br>else: 左天际线和右天际线相同，这时候高度高的会遮住高度低的<br>    天际线点 = [left[ileft], max( left[ileft].height, right[iright].height )<br>    更新lHeight, rHeight<br>    更新ileft, iright<br>如果结果数组为空或者当前天际线点的高度和结果中最后一个点的高度不同：<br>    这样才把当前天际线点放入结果数组中<br>如果左右某一个天际线轮廓没有处理完，则直接添加到结果数组中</p>
-<p>解法二：神仙的线扫描算法。大体思想如下：把每个建筑物拆分为水平线段两端两个点，即（左端点，高度）<br>（右端点，高度），同时，把左端点的高度变为负的，这样是为了给所有的端点排序时不会出错，也就是两个<br>建筑物拥有同一个左边界时侯特殊情况的处理。堆初始化含0元素。初始化最大高度为0。<br>对排序之后的所有端点遍历：<br>如果遇到左端点，恢复高度并入堆，如果是右端点，则从堆中除掉这个高度。<br>从堆中弹出最大元素，为当前的最大高度，如果最大高度改变了，说明发生了转折，则记录下当前天际线点为<br>（端点，最大高度）并汇入结果中。</p>
-<p>多说两句，分治算法可能是比较好想，但归并的过程确实是比较复杂难想。解法二就想不到了，解法二中的<br>高度变负技巧、堆中去掉一个元素、堆初始化为0，比较高级。</p>
-<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><pre><code class="python">from typing import List
-
-class Solution:
-
-    &quot;&quot;&quot;
-    解法一：divide and conquer
-    &quot;&quot;&quot;
-    def getSkyline(self, buildings: List[List[int]]) -&gt; List[List[int]]:
-
-        if len(buildings) == 0:
-            return []
-        if len(buildings) == 1:
-            return [ [buildings[0][0], buildings[0][2]], [buildings[0][1], 0] ]    # 左天际线， 右天际线
-
-        mid = len(buildings) // 2
-        left = self.getSkyline(buildings[:mid])
-        right = self.getSkyline(buildings[mid:])
-
-        return self.__merge(left, right)
-
-    def __merge(self, left, right):
-
-        hleft, hright = 0, 0     # 记录当前的高度
-        ileft, iright = 0, 0     # 左右两边的指针
-        res = []
-        while ileft &lt; len(left) and iright &lt; len(right):
-
-            # 如果左边的x坐标小于右边的x坐标，那么更新左边的
-            if left[ileft][0] &lt; right[iright][0]:
-                # 当前天际线
-                cp = [left[ileft][0], max(left[ileft][1], hright)]
-                # 当前高度
-                hleft = left[ileft][1]
-                ileft += 1
-            # 如果左边的x坐标大于右边的x左边，那么更新右边的
-            elif left[ileft][0] &gt; right[iright][0]:
-                # 当前天际线
-                cp = [right[iright][0], max(hleft, right[iright][1])]
-                hright = right[iright][1]
-                iright += 1
-            # 如果左右两边的x相等，那么高度较小的会被遮挡住，左右同时更新
-            else:
-                cp = [left[ileft][0], max(left[ileft][1], right[iright][1])]
-                hleft, hright = left[ileft][1], right[iright][1]
-                ileft += 1
-                iright += 1
-
-            # 当前最大高度不等于之前的最大高度时，才将当前的cp放入结果
-            if len(res) == 0 or cp[1] != res[-1][1]:
-                res.append(cp)
-        res.extend(left[ileft:] or right[iright:])    # 此处不能用append方法，因为left或者right本身是一个二维数组
-        return res
-
-
-    &quot;&quot;&quot;
-    解法二：神仙解法，利用堆，线扫描，小技巧
-    &quot;&quot;&quot;
-    def getSkyline2(self, buildings: List[List[int]]) -&gt; List[List[int]]:
-        # step 1: 将每个building分成左端点和右端点，即高度横线的两个端点
-        all = []
-        for build in buildings:
-            all.append([build[0], -build[2]])    # 左端点， 负高度以排序
-            all.append([build[1], build[2]])       # 右端点， 正高度
-        # step 2： 给all排序，这样会根据x排序，如果x相同，左端点因为是负值会排在右端点前面，
-        all.sort()
-
-        # step 3: 开始扫描，如果是左端点，入大顶堆，如果是右端点，从堆中去掉该点对应的高度
-        # 从堆中去掉一个元素目前还没有实现，因此以复杂度换简单
-        # 大顶堆记录的是当前高度以及最大高度
-        # 如果最大高度变了，说明出现了转折点，那么填入结果
-        res = []
-        hheap = [0]
-        last = [0, 0]     # 记录上一个时刻的天际线点
-        for p in all:
-            if p[1] &lt; 0:    # 左端点，高度入堆
-                hheap.append(-p[1])
-            else:           # 右端点，高度除堆
-                hheap.remove(p[1])
-
-            # 大顶堆弹出最大元素，为当前最大高度
-            maxheight = max(hheap)
-
-            # 如果当前高度不同于前一高度，则说明发生了转折
-            if maxheight != last[1]:
-                last[0] = p[0]
-                last[1] = maxheight
-                res.append([p[0],maxheight])    # 此处如果直接append(last)存入的是对last的引用，如果last改变，那么res中的内容也会改变
-
-        return res
-</code></pre>
-<p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">LeetCode 218</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Netlify </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>349.两个数组的交集</title>
+      <link href="2020/11/04/349_%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/"/>
+      <url>2020/11/04/349_%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays/">LeetCode 349.两个数组的交集</a><br>难度：<code>简单</code></p><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定两个数组，编写一个函数来计算它们的交集。</p><h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><blockquote><p>输入：nums1 = [1,2,2,1], nums2 = [2,2]<br>输出：[2]</p></blockquote><h4 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h4><blockquote><p>输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>输出：[9,4]</p></blockquote><h4 id="原函数"><a href="#原函数" class="headerlink" title="原函数"></a>原函数</h4><pre><code class="java">    public int[] intersection(int[] nums1, int[] nums2) &#123;    &#125;</code></pre><hr><p>###题解</p><p>####思路1：利用集合去重</p><p>此思路是朴素的思路，可从最基本的暴力解法思路演变而来。核心是两次比较。</p><p>思路演变的过程：</p><p><strong>（1）暴力</strong><br>设置答案数组ans[]。遍历nums2，对nums2中的每个数，查询其在nums1中是否存在（第1次比较）；若存在则查看ans数组中是否有已经有此值（第2次比较），若无则添加进ans数组中。最终返回部分ans。<br>此思路在实际的代码中还会存在一些边边角角的问题，比如答案数组的规模不确定等，需要完善。读者可以自己尝试。</p><p><strong>（2）利用集合</strong><br>鉴于（1）中每次比较的时间复杂度为O(n)，综合时间复杂度为O(n^m)，我们可以用集合代替数组来完成比较，以降低时间复杂度。可以将nums1和nums2中<strong>较长的</strong>那一个存放在Set中，以优化第1次比较的时间。</p><p><strong>（3）使用多个集合</strong><br>既然都已经使用集合了，为何不用集合来存储答案呢？这样可以优化第2次比较的时间，还避免了答案长度可变的问题。<br>至此，代码已经呼之欲出了。</p><p>代码如下：（为了风格统一，对输入的两个数组都采用了集合存储，实际上可以只存储较长的那个数组）</p><pre><code class="java">    //双集合去重    public int[] intersection(int[] nums1, int[] nums2) &#123;        Set&lt;Integer&gt; set1 = new HashSet&lt;&gt;();        Set&lt;Integer&gt; set2 = new HashSet&lt;&gt;();        for (int i = 0; i &lt; nums1.length; i++) &#123;            set1.add(nums1[i]);        &#125;        for (int i = 0; i &lt; nums2.length; i++) &#123;            set2.add(nums2[i]);        &#125;        return getIntersection(set1, set2);    &#125;    private int[] getIntersection(Set&lt;Integer&gt; set1, Set&lt;Integer&gt; set2) &#123;        if (set1.size() &lt; set2.size()) &#123;            return getIntersection(set2, set1);//遇到需要对称处理的操作时，这是一个比较好的代码思路        &#125;        Set&lt;Integer&gt; nums = new HashSet&lt;&gt;();        for (int num: set2) &#123;            if (set1.contains(num)) nums.add(num);        &#125;        int[] ans = new int[nums.size()];        int i = 0;        for (int num: nums) &#123;            ans[i++] = num;        &#125;        return ans;    &#125;</code></pre><p>####思路2：先排序，再用双指针遍历</p><p>对于涉及数组的题目，对数组先进行排序往往能起到事半功倍的效果。<br>当两个数组排好序后，比较的思路也很明显了：</p><pre><code>设指针p、q分别指向两个数组的首位置；依次比较nums1[p]和nums[q],有以下几种情况：    （1）nums1[p] &gt; nums[q],则q++;    （2）nums1[p] &lt; nums[q],则p++;    （3）nums1[p] = nums[q],说明是交集的数字，则进行下一步去重操作：        若答案中已存在此数字，则p++, q++;        若答案中无此数字，则将其添加进答案中;</code></pre><p>根据此思路可以轻易地写出以下代码。</p><pre><code class="java">    public int[] intersection(int[] nums1, int[] nums2) &#123;        Arrays.sort(nums1);        Arrays.sort(nums2);        int p = 0, q = 0;        List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();        int pre = -1;        while (p &lt; nums1.length &amp;&amp; q &lt; nums2.length) &#123;            if (nums1[p] &lt; nums2[q]) &#123;                p++;            &#125;            else if (nums1[p] &gt; nums2[q]) &#123;                q++;            &#125;            else &#123;                if (nums1[p] != pre) &#123;                    pre = nums1[p];                    nums.add(pre);                &#125;                p++;                q++;            &#125;        &#125;        int[] ans = new int[nums.size()];        int i = 0;        for (int num: nums) &#123;            ans[i++] = num;        &#125;        return ans;    &#125;</code></pre><p>就本题而言，思路2的时间复杂度是不及思路1的，但空间复杂度思路2更优。</p>]]></content>
+      
+      
       <categories>
-        <category>LeetCode</category>
-        <category>分治算法</category>
-        <category>大顶堆</category>
+          
+          <category> LeetCode </category>
+          
       </categories>
-      <tags>
-        <tag>LeetCode</tag>
-        <tag>分治算法</tag>
-        <tag>大顶堆</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>349.两个数组的交集</title>
-    <url>/2020/11/04/349_%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</url>
-    <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays/">LeetCode 349.两个数组的交集</a><br>难度：<code>简单</code></p>
-<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定两个数组，编写一个函数来计算它们的交集。</p>
-<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><blockquote>
-<p>输入：nums1 = [1,2,2,1], nums2 = [2,2]<br>输出：[2]</p>
-</blockquote>
-<h4 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h4><blockquote>
-<p>输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>输出：[9,4]</p>
-</blockquote>
-<h4 id="原函数"><a href="#原函数" class="headerlink" title="原函数"></a>原函数</h4><pre><code class="java">    public int[] intersection(int[] nums1, int[] nums2) &#123;
-
-    &#125;
-</code></pre>
-<hr>
-<p>###题解</p>
-<p>####思路1：利用集合去重</p>
-<p>此思路是朴素的思路，可从最基本的暴力解法思路演变而来。核心是两次比较。</p>
-<p>思路演变的过程：</p>
-<p><strong>（1）暴力</strong><br>设置答案数组ans[]。遍历nums2，对nums2中的每个数，查询其在nums1中是否存在（第1次比较）；若存在则查看ans数组中是否有已经有此值（第2次比较），若无则添加进ans数组中。最终返回部分ans。<br>此思路在实际的代码中还会存在一些边边角角的问题，比如答案数组的规模不确定等，需要完善。读者可以自己尝试。</p>
-<p><strong>（2）利用集合</strong><br>鉴于（1）中每次比较的时间复杂度为O(n)，综合时间复杂度为O(n^m)，我们可以用集合代替数组来完成比较，以降低时间复杂度。可以将nums1和nums2中<strong>较长的</strong>那一个存放在Set中，以优化第1次比较的时间。</p>
-<p><strong>（3）使用多个集合</strong><br>既然都已经使用集合了，为何不用集合来存储答案呢？这样可以优化第2次比较的时间，还避免了答案长度可变的问题。<br>至此，代码已经呼之欲出了。</p>
-<p>代码如下：（为了风格统一，对输入的两个数组都采用了集合存储，实际上可以只存储较长的那个数组）</p>
-<pre><code class="java">    //双集合去重
-    public int[] intersection(int[] nums1, int[] nums2) &#123;
-        Set&lt;Integer&gt; set1 = new HashSet&lt;&gt;();
-        Set&lt;Integer&gt; set2 = new HashSet&lt;&gt;();
-
-        for (int i = 0; i &lt; nums1.length; i++) &#123;
-            set1.add(nums1[i]);
-        &#125;
-        for (int i = 0; i &lt; nums2.length; i++) &#123;
-            set2.add(nums2[i]);
-        &#125;
-
-        return getIntersection(set1, set2);
-    &#125;
-    private int[] getIntersection(Set&lt;Integer&gt; set1, Set&lt;Integer&gt; set2) &#123;
-        if (set1.size() &lt; set2.size()) &#123;
-            return getIntersection(set2, set1);//遇到需要对称处理的操作时，这是一个比较好的代码思路
-        &#125;
-        Set&lt;Integer&gt; nums = new HashSet&lt;&gt;();
-        for (int num: set2) &#123;
-            if (set1.contains(num)) nums.add(num);
-        &#125;
-
-        int[] ans = new int[nums.size()];
-        int i = 0;
-        for (int num: nums) &#123;
-            ans[i++] = num;
-        &#125;
-        return ans;
-    &#125;
-</code></pre>
-<p>####思路2：先排序，再用双指针遍历</p>
-<p>对于涉及数组的题目，对数组先进行排序往往能起到事半功倍的效果。<br>当两个数组排好序后，比较的思路也很明显了：</p>
-<pre><code>设指针p、q分别指向两个数组的首位置；
-依次比较nums1[p]和nums[q],有以下几种情况：
-    （1）nums1[p] &gt; nums[q],则q++;
-    （2）nums1[p] &lt; nums[q],则p++;
-    （3）nums1[p] = nums[q],说明是交集的数字，则进行下一步去重操作：
-        若答案中已存在此数字，则p++, q++;
-        若答案中无此数字，则将其添加进答案中;
-</code></pre><p>根据此思路可以轻易地写出以下代码。</p>
-<pre><code class="java">    public int[] intersection(int[] nums1, int[] nums2) &#123;
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        int p = 0, q = 0;
-        List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();
-
-        int pre = -1;
-        while (p &lt; nums1.length &amp;&amp; q &lt; nums2.length) &#123;
-            if (nums1[p] &lt; nums2[q]) &#123;
-                p++;
-            &#125;
-            else if (nums1[p] &gt; nums2[q]) &#123;
-                q++;
-            &#125;
-            else &#123;
-                if (nums1[p] != pre) &#123;
-                    pre = nums1[p];
-                    nums.add(pre);
-                &#125;
-                p++;
-                q++;
-            &#125;
-        &#125;
-
-        int[] ans = new int[nums.size()];
-        int i = 0;
-        for (int num: nums) &#123;
-            ans[i++] = num;
-        &#125;
-        return ans;
-    &#125;
-</code></pre>
-<p>就本题而言，思路2的时间复杂度是不及思路1的，但空间复杂度思路2更优。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 集合 </tag>
+            
+            <tag> 数组 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>239.滑动窗口的最大值(Hard)(Python)</title>
+      <link href="2020/11/04/239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC-Hard/"/>
+      <url>2020/11/04/239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC-Hard/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a>，滑动窗口最大值，难度：<code>困难</code>。</p><h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。<br>滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。能否在线性时间内解决这个问题？</p><p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">原题</a></p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote><p>输入:  nums = [1,3,-1,-3,5,3,6,7], 和 k = 3</p></blockquote><blockquote><p>输出:  [3,3,5,5,6,7]</p></blockquote><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>1、首先想到的是暴力解法，滑动窗口，每次在窗口内扫描最大值，这样的复杂度是O(Nk)。</p><p>2、题目要求的是线性时间，那么从暴力解法中寻求优化方法。考虑到每次窗口内扫描最大值很耗费时间，则使用一个数据结构来储存当前窗口的最大值。<br>同时为了保证数据结构中存储的元素不至于超出窗口长度，存储元素的索引来判断是否超出长度。因为每次要取出最大值，所以考虑单调栈。<br>这个数据结构需要弹出元素，而单调栈默认栈顶是最大值，为了偷懒，使用单调的双端队列，其插入和弹出都是O(1)时间，所以整体上是线性时间。</p><p>3、动态规划：参考官方题解。把数组按窗口长度分块，对每个块求两个动态数组————从块开始往块结尾的最大值left和从块结尾往块开始的最大值right。<br>这样的两个数组能够全部表示出相邻两个块的最大值信息。对于窗口(i, i+k-1)，它的最大值即为max( right[i], left[i+k-1] )。<br>可以这么理解，若窗口在一个块内，那么right[i]和left[i+k-1]都代表了这个块也就是这个窗口的最大值；若窗口跨越了两个相邻块，<br>那么right[i]表示左边块部分的最大值，left[i+k-1]表示右边块的最大值，两个中较大的值则代表当前窗口的最大值。</p><h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><pre><code class="python">&quot;&quot;&quot;代码未经优化，看懂就行！！！&quot;&quot;&quot;from collections import dequefrom typing import Listclass Solution:    &quot;&quot;&quot;    解法一：暴力求解，双层for循环    &quot;&quot;&quot;    def maxSlidingWindow(self, nums: List[int], k: int) -&gt; List[int]:        res = []        for i in range(len(nums) - k + 1):            cur = nums[i : i+k]            max = cur[0]            for j in cur:                if j &gt; max:                    max = j            res.append(max)        return res    &quot;&quot;&quot;    滑动窗口的经典解法：单调队列    这里使用双端队列，因为是滑动窗口，所以单调队列保存的是元素的索引，而不是元素本身    使用前k个元素初始化双端队列，    滑动，去掉超出窗口长度的元素，去掉小于当前元素的所有值，因为如果比当前值小，必不会是当前窗口的最大值    单调队列的头部对应的就是最大值    &quot;&quot;&quot;    def maxSlidingWindow2(self, nums: List[int], k: int) -&gt; List[int]:        res = []        MonotoneQueue = deque()        # 初始化双端队列        for i in range(k):            if not MonotoneQueue:                MonotoneQueue.append(i)            else:                while MonotoneQueue and nums[i] &gt; nums[MonotoneQueue[-1]]:                    MonotoneQueue.pop()                MonotoneQueue.append(i)        res.append(nums[MonotoneQueue[0]])        # 从第k个数开始遍历数组        for i in range(k, len(nums)):            # 排除超出窗长度的元素            while (i - MonotoneQueue[0]) &gt; k:                MonotoneQueue.popleft()            # 排除所有比当前元素小的值，再插入当前值，维持队列的单调性            while MonotoneQueue and nums[i] &gt; nums[MonotoneQueue[-1]]:                MonotoneQueue.pop()            MonotoneQueue.append(i)            # 将队头元素汇入结果            res.append(nums[MonotoneQueue[0]])        return res    &quot;&quot;&quot;    解法三：动态规划。参考官方题解，那个图很可以理解了，但还是比较难想，典型解法是单调栈或者单调队列    &quot;&quot;&quot;    def maxSlidingWindow3(self, nums: List[int], k: int) -&gt; List[int]:        if not nums:            return []        if k == 1:            return nums        # step 1: 将nums按k分块，然后构建每块从左到右、从右到左的最大值        left, right = [nums[0]]*len(nums), [nums[-1]]*len(nums)     # 用来记录从左到右、从右到左不同块内的最大值        for i in range(len(nums)):            if i%k == 0:    # 一个块的开始                left[i] = nums[i]            else:                left[i] = nums[i] if nums[i] &gt; left[i-1] else left[i-1]        for j in range(len(nums)-2, -1, -1):            if (j+1)%k == 0:    # 一个块的尾部                right[j] = nums[j]            else:                right[j] = nums[j] if nums[j] &gt; right[j+1] else right[j+1]        # step 2: 得出结果。left和right两个数组记录了相邻两个块的所有信息        # 若窗口在块内，从左往右和从右往左正好囊括该块        # 若窗口跨越两个相邻块，那么从右往左和从左往右可以囊括该块        res = []        for i in range(len(nums)-k+1):            res.append( max(right[i], left[i+k-1]) )        return res</code></pre><p>More info: <a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a></p>]]></content>
+      
+      
       <categories>
-        <category>LeetCode</category>
+          
+          <category> LeetCode </category>
+          
+          <category> 动态规划 </category>
+          
+          <category> 单调队列 </category>
+          
       </categories>
-      <tags>
-        <tag>LeetCode</tag>
-        <tag>集合</tag>
-        <tag>数组</tag>
-        <tag>双指针</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>239.滑动窗口的最大值(Hard)(Python)</title>
-    <url>/2020/11/04/239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC-Hard/</url>
-    <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a>，滑动窗口最大值，难度：<code>困难</code>。</p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。<br>滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。能否在线性时间内解决这个问题？</p>
-<p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">原题</a></p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote>
-<p>输入:  nums = [1,3,-1,-3,5,3,6,7], 和 k = 3</p>
-</blockquote>
-<blockquote>
-<p>输出:  [3,3,5,5,6,7]</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>1、首先想到的是暴力解法，滑动窗口，每次在窗口内扫描最大值，这样的复杂度是O(Nk)。</p>
-<p>2、题目要求的是线性时间，那么从暴力解法中寻求优化方法。考虑到每次窗口内扫描最大值很耗费时间，则使用一个数据结构来储存当前窗口的最大值。<br>同时为了保证数据结构中存储的元素不至于超出窗口长度，存储元素的索引来判断是否超出长度。因为每次要取出最大值，所以考虑单调栈。<br>这个数据结构需要弹出元素，而单调栈默认栈顶是最大值，为了偷懒，使用单调的双端队列，其插入和弹出都是O(1)时间，所以整体上是线性时间。</p>
-<p>3、动态规划：参考官方题解。把数组按窗口长度分块，对每个块求两个动态数组————从块开始往块结尾的最大值left和从块结尾往块开始的最大值right。<br>这样的两个数组能够全部表示出相邻两个块的最大值信息。对于窗口(i, i+k-1)，它的最大值即为max( right[i], left[i+k-1] )。<br>可以这么理解，若窗口在一个块内，那么right[i]和left[i+k-1]都代表了这个块也就是这个窗口的最大值；若窗口跨越了两个相邻块，<br>那么right[i]表示左边块部分的最大值，left[i+k-1]表示右边块的最大值，两个中较大的值则代表当前窗口的最大值。</p>
-<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><pre><code class="python">&quot;&quot;&quot;
-代码未经优化，看懂就行！！！
-&quot;&quot;&quot;
-from collections import deque
-from typing import List
-
-class Solution:
-
-    &quot;&quot;&quot;
-    解法一：暴力求解，双层for循环
-    &quot;&quot;&quot;
-    def maxSlidingWindow(self, nums: List[int], k: int) -&gt; List[int]:
-
-        res = []
-        for i in range(len(nums) - k + 1):
-
-            cur = nums[i : i+k]
-            max = cur[0]
-            for j in cur:
-                if j &gt; max:
-                    max = j
-            res.append(max)
-        return res
-
-    &quot;&quot;&quot;
-    滑动窗口的经典解法：单调队列
-    这里使用双端队列，因为是滑动窗口，所以单调队列保存的是元素的索引，而不是元素本身
-    使用前k个元素初始化双端队列，
-    滑动，去掉超出窗口长度的元素，去掉小于当前元素的所有值，因为如果比当前值小，必不会是当前窗口的最大值
-    单调队列的头部对应的就是最大值
-    &quot;&quot;&quot;
-    def maxSlidingWindow2(self, nums: List[int], k: int) -&gt; List[int]:
-
-        res = []
-        MonotoneQueue = deque()
-        # 初始化双端队列
-        for i in range(k):
-            if not MonotoneQueue:
-                MonotoneQueue.append(i)
-            else:
-                while MonotoneQueue and nums[i] &gt; nums[MonotoneQueue[-1]]:
-                    MonotoneQueue.pop()
-                MonotoneQueue.append(i)
-        res.append(nums[MonotoneQueue[0]])
-        # 从第k个数开始遍历数组
-        for i in range(k, len(nums)):
-            # 排除超出窗长度的元素
-            while (i - MonotoneQueue[0]) &gt; k:
-                MonotoneQueue.popleft()
-            # 排除所有比当前元素小的值，再插入当前值，维持队列的单调性
-            while MonotoneQueue and nums[i] &gt; nums[MonotoneQueue[-1]]:
-                MonotoneQueue.pop()
-            MonotoneQueue.append(i)
-            # 将队头元素汇入结果
-            res.append(nums[MonotoneQueue[0]])
-        return res
-
-
-    &quot;&quot;&quot;
-    解法三：动态规划。参考官方题解，那个图很可以理解了，但还是比较难想，典型解法是单调栈或者单调队列
-    &quot;&quot;&quot;
-    def maxSlidingWindow3(self, nums: List[int], k: int) -&gt; List[int]:
-
-        if not nums:
-            return []
-        if k == 1:
-            return nums
-
-        # step 1: 将nums按k分块，然后构建每块从左到右、从右到左的最大值
-        left, right = [nums[0]]*len(nums), [nums[-1]]*len(nums)     # 用来记录从左到右、从右到左不同块内的最大值
-        for i in range(len(nums)):
-            if i%k == 0:    # 一个块的开始
-                left[i] = nums[i]
-            else:
-                left[i] = nums[i] if nums[i] &gt; left[i-1] else left[i-1]
-        for j in range(len(nums)-2, -1, -1):
-            if (j+1)%k == 0:    # 一个块的尾部
-                right[j] = nums[j]
-            else:
-                right[j] = nums[j] if nums[j] &gt; right[j+1] else right[j+1]
-        # step 2: 得出结果。left和right两个数组记录了相邻两个块的所有信息
-        # 若窗口在块内，从左往右和从右往左正好囊括该块
-        # 若窗口跨越两个相邻块，那么从右往左和从左往右可以囊括该块
-        res = []
-        for i in range(len(nums)-k+1):
-            res.append( max(right[i], left[i+k-1]) )
-        return res
-
-</code></pre>
-<p>More info: <a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 单调队列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>218.天际线问题(Hard)(Python)</title>
+      <link href="2020/11/03/218-%E5%A4%A9%E9%99%85%E7%BA%BF%E9%97%AE%E9%A2%98-Hard/"/>
+      <url>2020/11/03/218-%E5%A4%A9%E9%99%85%E7%BA%BF%E9%97%AE%E9%A2%98-Hard/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/the-skyline-problem/">LeetCode 218</a>，天际线问题，难度：<code>困难</code>。</p><h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>城市中的天际线是从远处望去城市中所有建筑物形成的外部轮廓。假设每个城市为绝对平坦且高度为零的表面<br>上的完美矩形，以三元组表示（左边界，右边界，高度），且每个建筑物都在合理范围内。</p><p>根据给定的三元组，绘制出城市的轮廓线，这些轮廓线输出是关键点的列表，关键点是每个水平线断的左端点。<br>任何两个相邻建筑物之间的地面也视为天际线轮廓的一部分。具体描述参考leetcode原题。</p><p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">原题</a></p><h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote><p>输入:  [ [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8] ]<br>输出:  [ [2 10], [3 15], [7 12], [12 0], [15 10], [20 8], [24, 0] ]</p></blockquote><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>这题有点难，看了官方题解，“有那么多方法你偏偏选了最难的一种”，以及精选的一种神仙解法，<br>神仙解法利用堆。不明白为什么能够想出来这样解，这里仅作方法的记录。</p><p>解法一：分治算法。把给定的一排建筑物不断的二分切割，最小单元为[]或者一个建筑物。对于一个<br>建筑物来说，天际线即为（左端点，高度）（右端点，零）。分割之后再归并，归并的步骤如下：<br>left ==&gt; 左天际线轮廓， right ==&gt; 右天际线轮廓<br>ileft ==&gt; 左天际线指针， iright ==&gt; 右天际线指针<br>lHeight ==&gt;左天际线当前高度， rHeight ==&gt; 右天际线当前高度<br>结果数组初始化为空<br>if left[ileft] &lt; right[iright]: 说明左天际线在右天际线的左边，考虑更新左边<br>    天际线点 = [ left[ileft], max( left[ileft].height, rHeight )<br>    lHeight = left[ileft].height    # 更新当前高度<br>    ileft向前移动一位                  # 更新指针<br>elseif left[ileft] &gt; right[iright]: 说明右天际线在左天际线左边，考虑更新右边<br>    原理同上<br>else: 左天际线和右天际线相同，这时候高度高的会遮住高度低的<br>    天际线点 = [left[ileft], max( left[ileft].height, right[iright].height )<br>    更新lHeight, rHeight<br>    更新ileft, iright<br>如果结果数组为空或者当前天际线点的高度和结果中最后一个点的高度不同：<br>    这样才把当前天际线点放入结果数组中<br>如果左右某一个天际线轮廓没有处理完，则直接添加到结果数组中</p><p>解法二：神仙的线扫描算法。大体思想如下：把每个建筑物拆分为水平线段两端两个点，即（左端点，高度）<br>（右端点，高度），同时，把左端点的高度变为负的，这样是为了给所有的端点排序时不会出错，也就是两个<br>建筑物拥有同一个左边界时侯特殊情况的处理。堆初始化含0元素。初始化最大高度为0。<br>对排序之后的所有端点遍历：<br>如果遇到左端点，恢复高度并入堆，如果是右端点，则从堆中除掉这个高度。<br>从堆中弹出最大元素，为当前的最大高度，如果最大高度改变了，说明发生了转折，则记录下当前天际线点为<br>（端点，最大高度）并汇入结果中。</p><p>多说两句，分治算法可能是比较好想，但归并的过程确实是比较复杂难想。解法二就想不到了，解法二中的<br>高度变负技巧、堆中去掉一个元素、堆初始化为0，比较高级。</p><h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><pre><code class="python">from typing import Listclass Solution:    &quot;&quot;&quot;    解法一：divide and conquer    &quot;&quot;&quot;    def getSkyline(self, buildings: List[List[int]]) -&gt; List[List[int]]:        if len(buildings) == 0:            return []        if len(buildings) == 1:            return [ [buildings[0][0], buildings[0][2]], [buildings[0][1], 0] ]    # 左天际线， 右天际线        mid = len(buildings) // 2        left = self.getSkyline(buildings[:mid])        right = self.getSkyline(buildings[mid:])        return self.__merge(left, right)    def __merge(self, left, right):        hleft, hright = 0, 0     # 记录当前的高度        ileft, iright = 0, 0     # 左右两边的指针        res = []        while ileft &lt; len(left) and iright &lt; len(right):            # 如果左边的x坐标小于右边的x坐标，那么更新左边的            if left[ileft][0] &lt; right[iright][0]:                # 当前天际线                cp = [left[ileft][0], max(left[ileft][1], hright)]                # 当前高度                hleft = left[ileft][1]                ileft += 1            # 如果左边的x坐标大于右边的x左边，那么更新右边的            elif left[ileft][0] &gt; right[iright][0]:                # 当前天际线                cp = [right[iright][0], max(hleft, right[iright][1])]                hright = right[iright][1]                iright += 1            # 如果左右两边的x相等，那么高度较小的会被遮挡住，左右同时更新            else:                cp = [left[ileft][0], max(left[ileft][1], right[iright][1])]                hleft, hright = left[ileft][1], right[iright][1]                ileft += 1                iright += 1            # 当前最大高度不等于之前的最大高度时，才将当前的cp放入结果            if len(res) == 0 or cp[1] != res[-1][1]:                res.append(cp)        res.extend(left[ileft:] or right[iright:])    # 此处不能用append方法，因为left或者right本身是一个二维数组        return res    &quot;&quot;&quot;    解法二：神仙解法，利用堆，线扫描，小技巧    &quot;&quot;&quot;    def getSkyline2(self, buildings: List[List[int]]) -&gt; List[List[int]]:        # step 1: 将每个building分成左端点和右端点，即高度横线的两个端点        all = []        for build in buildings:            all.append([build[0], -build[2]])    # 左端点， 负高度以排序            all.append([build[1], build[2]])       # 右端点， 正高度        # step 2： 给all排序，这样会根据x排序，如果x相同，左端点因为是负值会排在右端点前面，        all.sort()        # step 3: 开始扫描，如果是左端点，入大顶堆，如果是右端点，从堆中去掉该点对应的高度        # 从堆中去掉一个元素目前还没有实现，因此以复杂度换简单        # 大顶堆记录的是当前高度以及最大高度        # 如果最大高度变了，说明出现了转折点，那么填入结果        res = []        hheap = [0]        last = [0, 0]     # 记录上一个时刻的天际线点        for p in all:            if p[1] &lt; 0:    # 左端点，高度入堆                hheap.append(-p[1])            else:           # 右端点，高度除堆                hheap.remove(p[1])            # 大顶堆弹出最大元素，为当前最大高度            maxheight = max(hheap)            # 如果当前高度不同于前一高度，则说明发生了转折            if maxheight != last[1]:                last[0] = p[0]                last[1] = maxheight                res.append([p[0],maxheight])    # 此处如果直接append(last)存入的是对last的引用，如果last改变，那么res中的内容也会改变        return res</code></pre><p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">LeetCode 218</a></p>]]></content>
+      
+      
       <categories>
-        <category>LeetCode</category>
-        <category>动态规划</category>
-        <category>单调队列</category>
+          
+          <category> LeetCode </category>
+          
+          <category> 分治算法 </category>
+          
+          <category> 大顶堆 </category>
+          
       </categories>
-      <tags>
-        <tag>LeetCode</tag>
-        <tag>动态规划</tag>
-        <tag>单调队列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Netlify+hexo+github多电脑多作者维护博客</title>
-    <url>/2020/11/05/Netlify-hexo-github%E5%A4%9A%E7%94%B5%E8%84%91%E5%A4%9A%E4%BD%9C%E8%80%85%E7%BB%B4%E6%8A%A4%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p><a href="https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io">完成后的目录结构</a>。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
-<li>安装Node.js（Hexo基于NodeJs，其中npm工具对于网页部署很有用）<br><a href="https://nodejs.org/en/">下载地址</a>，下载推荐安装版本LTS。<br>下载好msi文件后，一路默认，唯独注意在Custom Setup这一步勾选 <code>Add to PATH</code> 添加到系统环境变量(新版本应该都已经默认勾选了)。</li>
-<li>安装Git（源码托管）<br><a href="https://git-for-windows.github.io/">下载地址</a>，exe一路默认安装到底。</li>
-</ul>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>hexo用于部署本博客。<br>首先创建一个新的文件夹，用于放置hexo的基本内容，在cmd窗口下cd到改目录下。</p>
-<p>依次执行：</p>
-<pre><code class="bash">npm i -g hexo
-hexo -v
-</code></pre>
-<p>查看是否安装完成，此时cmd窗口输出：</p>
-<pre><code class="bash">(base) F:\xuhao\hexo&gt;npm i -g hexo
-C:\Users\Administrator\AppData\Roaming\npm\hexo -&gt; C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\hexo
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules\hexo\node_modules\chokidar\node_modules\fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)
-
-+ hexo@5.2.0
-added 90 packages from 357 contributors in 39.189s
-
-(base) F:\xuhao\hexo&gt;hexo -v
-hexo-cli: 4.2.0
-os: Windows_NT 10.0.17134 win32 x64
-node: 14.15.0
-v8: 8.4.371.19-node.17
-uv: 1.40.0
-zlib: 1.2.11
-brotli: 1.0.9
-ares: 1.16.1
-modules: 83
-nghttp2: 1.41.0
-napi: 7
-llhttp: 2.1.3
-openssl: 1.1.1g
-cldr: 37.0
-icu: 67.1
-tz: 2020a
-unicode: 13.0
-</code></pre>
-<p>利用github部署前还需要安装Deployer部署器，否则会报如下错误</p>
-<pre><code class="bash">ERROR Deployer not found: git
-</code></pre>
-<p>继续在cmd窗口输入如下命令hexo-deployer-git</p>
-<pre><code class="bash">npm install hexo-deployer-git --save
-</code></pre>
-<h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><p>在本地创建ssh key，简化之后git提交代码，在Cmd中输入，注意替换成自己的邮箱：</p>
-<pre><code class="bash">ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;
-</code></pre>
-<p>一路回车到底，cmd提示在<code>C:\Users\Administrator/.ssh/id_rsa.pub.</code>路径下生成了id_rsa.pub.的公钥，找到该文件，以记事本形式打开，复制里面的key。<br>来到Github页面，登录自己的github账号之后，在右上角区域找到settings，左边选择<code>SSH and GPG keys</code>，然后New SSH key，title随便填写，粘贴id_rsa.pub里面的key，保存。<br>为了验证是否成功，在cmd页面输入</p>
-<pre><code class="bash">ssh -T git@github.com
-</code></pre>
-<p>会提示</p>
-<pre><code class="bash">Hi HUSTGroup-2022! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
-<p>代表已经连接成功。<br>此时已基本大功告成，但如果此时通过运行$ hexo deploy运行网站，会报出如下错误，意思是我们还没有设置user.email和user.name。</p>
-<pre><code class="bash">*** Please tell me who you are.
-
-Run
-
-  git config --global user.email &quot;you@example.com&quot;
-  git config --global user.name &quot;Your Name&quot;
-
-to set your account&#39;s default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: unable to auto-detect email address (got &#39;Him@hongxiaoxin.(none)&#39;)
-error: src refspec HEAD does not match any.
-error: failed to push some refs to &#39;git@github.com:ghxiaoxiao/ghxiaoxiao.github.io&#39;
-FATAL Something&#39;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
-Error: Spawn failed
-    at ChildProcess.&lt;anonymous&gt; (d:\hexo\blog\node_modules\hexo-util\lib\spawn.js:52:19)
-    at emitTwo (events.js:126:13)
-    at ChildProcess.emit (events.js:214:7)
-    at ChildProcess.cp.emit (d:\hexo\blog\node_modules\cross-spawn\lib\enoent.js:40:29)
-    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)
-</code></pre>
-<p>因此，进行如下设置，其中email是你的GitHub绑定的邮箱，用户名是你的GitHub用户名。</p>
-<pre><code class="bash">git config --global user.email &quot;hustgroup_2022@163.com&quot;
-git config --global user.name &quot;HUSTGroup-2022&quot;
-</code></pre>
-<h3 id="clone博客源码或拉取博客更新到本地电脑"><a href="#clone博客源码或拉取博客更新到本地电脑" class="headerlink" title="clone博客源码或拉取博客更新到本地电脑"></a>clone博客源码或拉取博客更新到本地电脑</h3><p>对于多电脑多作者维护博客模式，本机第一次进行博客维护时，应该首先clone托管在github上的博客源码。注意，<code>除了第一次，此后无需执行此clone步骤</code>。<br>在cmd窗口下，切换到自己希望存放博客源码的目录，执行：</p>
-<pre><code class="bash">git clone https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io
-</code></pre>
-<p>然后切换到该源码目录下，可以使用TAB键补全地址：</p>
-<pre><code class="bash">cd HUSTGroup-2022.github.io
-</code></pre>
-<p><code>对于非第一次进行博客维护的主机，直接执行如下命令而不必执行clone命令，从github拉取最新的更新（因为其他电脑的其他作者可能更新了源码并且托管在github上)：</code><br>首先执行</p>
-<pre><code class="bash">git branch
-</code></pre>
-<p>查看当前所在github 仓库的分支，若为<code>* source</code>则正确。因为我们在该博客仓库下建立了两个分支，分别为master和source，source中用于存放源码，master中用于存放静态网页。<br>若非source分支，输入</p>
-<pre><code class="bash">git checkout source
-git branch
-</code></pre>
-<p>此时已切换到source分支。<br>最后执行</p>
-<pre><code class="bash">git pull
-</code></pre>
-<p>拉取更新（可能由其它电脑的其他作者更新了博客源码）。</p>
-<h3 id="更新博客"><a href="#更新博客" class="headerlink" title="更新博客"></a>更新博客</h3><p>在本地HUSTGroup-2022.github.io文件夹下，进入source/_posts/文件夹，可以看到里面的.md（markdown文件）存放了网页的markdown源码。<br>在cmd窗口HUSTGroup-2022.github.io目录下，执行（<code>也只需要第一次配置的时候执行，以后都不需要</code>）</p>
-<pre><code class="bash">npm install
-</code></pre>
-<p>安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。<br><code>原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行</code><br>然后执行</p>
-<pre><code class="bash">hexo new 1105testnew
-</code></pre>
-<p>建立一个新的.md文件（文件名自取）用于更新博客，可以在source/_posts/文件夹下看到多出了一个1105testnew.md文件。<br>编辑该文件，输入自己希望更新的网页内容。在3-hexo主题下添加多个categories或者tags标签应该换行，以’-‘符号打头，例如：</p>
-<pre><code class="bash">categories:
-
-- 前端
-tags:
-
-- Netlify
-- hexo
-</code></pre>
-<p>最后，当.md文件更新完后，生成网页，将网页部署到github，同时将源码托管到github。依次执行（#后面是注释）：</p>
-<pre><code class="bash">hexo g #根据更新的源码生成新的网页
-hexo deploy #根据生成的网页部署到github，同时由Netlify维护的博客网站会得到更新
-git add . #将本机添加的新的网页源码加入git缓存，准备提交源码到github
-git commit -m &quot;1105&quot; #添加提交到github的commit，“”内可输入任何注释内容，一般情况下不可省略
-git push -u origin source #如果确定当前在source分支下，也可以仅仅执行 git push指令
-</code></pre>
-<p>可能会要求输入账号密码，按照提示依次完成，第一行提示之后会弹窗要求确认并打开网页确认：</p>
-<pre><code class="bash">info: please complete authentication in your browser...
-Username for &#39;https://github.com&#39;:
-Password for &#39;https://HUSTGroup-2022@github.com&#39;:
-</code></pre>
-<p>频繁需要输入账号密码应该是https协议的问题，请参考<a href="https://blog.csdn.net/whbing1471/article/details/52066688">更改协议</a><br>More info: <a href="https://www.pianshen.com/article/8216193907/">github建立多分支</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 分治算法 </tag>
+            
+            <tag> 大顶堆 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>135.分发糖果(Hard)(C++&amp;Java)</title>
+      <link href="2020/10/31/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C-Hard/"/>
+      <url>2020/10/31/135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C-Hard/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a>，分发糖果问题，难度：<code>困难</code>。</p><h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p><p>每个孩子至少分配到 1 个糖果。<br>相邻的孩子中，评分高的孩子必须获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p><p>More info: <a href="https://leetcode-cn.com/problems/candy/">原题</a></p><h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote><p>输入:  [1,0,2]<br>输出:  5<br>解释:  你可以分别给这三个孩子分发 2、1、2 颗糖果。</p></blockquote><h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><blockquote><p>输入:  [1,2,2]<br>输出:  4<br>解释:  你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p></blockquote><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><code>贪心算法</code>采用贪心的策略，保证每次<code>局部的操作都是当前最优的</code>，从而使最终一步步累计得到的结果是<code>全局最优</code>的。<br>对于本题，贪心策略通过两次遍历实现：<br>所有孩子的糖果数初始化为1，<code>从左往右遍历一遍</code>，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1；<br>再<code>从右往左遍历一遍</code>，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1。</p><ul><li>通过这两次遍历，即将每个孩子都和左右孩子进行了比较。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一侧的大小关系。<br>在样例中，我们初始化糖果分配为<code>[1,1,1]</code>，第一次遍历更新后的结果为<code>[1,1,2]</code>，第二次遍历更新后的结果为<code>[2,1,2]</code>。</li></ul><h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><pre><code class="cpp">int candy(vector&lt;int&gt;&amp; ratings) &#123;    int size=ratings.size();    vector&lt;int&gt; num(size,1);    for(int i=1;i&lt;size;i++)    &#123;        if(ratings[i]&gt;ratings[i-1])        &#123;            num[i]=num[i-1]+1;        &#125;    &#125;    for(int i=size-1;i&gt;0;i--)    &#123;        if(ratings[i-1]&gt;ratings[i])        &#123;            if(num[i-1]&gt;num[i]) continue;            else num[i-1]=num[i]+1;        &#125;    &#125;    return accumulate(num.begin(),num.end(),0);&#125;</code></pre><p>More info: <a href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a></p>]]></content>
+      
+      
       <categories>
-        <category>前端</category>
+          
+          <category> LeetCode </category>
+          
+          <category> 贪心算法 </category>
+          
       </categories>
-      <tags>
-        <tag>Netlify</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 贪心算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="2020/10/30/hello-world/"/>
+      <url>2020/10/30/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
 </search>
