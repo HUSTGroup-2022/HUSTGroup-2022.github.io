@@ -153,6 +153,7 @@ npm install
 ```
 安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。
 `原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行`
+`记得先git branch检查是否在source分支下，然后git pull更新本地代码`
 然后执行
 ```bash
 hexo new 1105testnew
