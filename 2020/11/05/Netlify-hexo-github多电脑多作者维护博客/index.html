@@ -14,7 +14,7 @@
 <meta property="og:description" content="完成后的目录结构。 准备工作 安装Node.js（Hexo基于NodeJs，其中npm工具对于网页部署很有用）下载地址，下载推荐安装版本LTS。下载好msi文件后，一路默认，唯独注意在Custom Setup这一步勾选 Add to PATH 添加到系统环境变量(新版本应该都已经默认勾选了)。 安装Git（源码托管）下载地址，exe一路默认安装到底。  安装hexohexo用于部署本博客。首先创建">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-05T08:06:53.000Z">
-<meta property="article:modified_time" content="2020-11-05T09:14:24.852Z">
+<meta property="article:modified_time" content="2020-11-05T10:27:22.308Z">
 <meta property="article:author" content="HUST2022">
 <meta property="article:tag" content="Netlify">
 <meta property="article:tag" content="hexo">
@@ -354,12 +354,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-11-05 17:14:24'>2020-11-05 16:06</time>
+            Created At : <time class="date" title='Updated At: 2020-11-05 18:27:22'>2020-11-05 16:06</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.6k</span>
+        <span>Count:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -493,7 +493,7 @@ git branch
 <h3 id="更新博客"><a href="#更新博客" class="headerlink" title="更新博客"></a>更新博客</h3><p>在本地HUSTGroup-2022.github.io文件夹下，进入source/_posts/文件夹，可以看到里面的.md（markdown文件）存放了网页的markdown源码。<br>在cmd窗口HUSTGroup-2022.github.io目录下，执行（<code>也只需要第一次配置的时候执行，以后都不需要</code>）</p>
 <pre><code class="bash">npm install
 </code></pre>
-<p>安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。<br><code>原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行</code><br>然后执行</p>
+<p>安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。<br><code>原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行</code><br><code>记得先git branch检查是否在source分支下，然后git pull更新本地代码</code><br>然后执行</p>
 <pre><code class="bash">hexo new 1105testnew
 </code></pre>
 <p>建立一个新的.md文件（文件名自取）用于更新博客，可以在source/_posts/文件夹下看到多出了一个1105testnew.md文件。<br>编辑该文件，输入自己希望更新的网页内容。在3-hexo主题下添加多个categories或者tags标签应该换行，以’-‘符号打头，例如：</p>
