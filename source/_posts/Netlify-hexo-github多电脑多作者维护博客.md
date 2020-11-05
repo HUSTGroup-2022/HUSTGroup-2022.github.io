@@ -10,13 +10,13 @@ tags:
 - Netlify
 - hexo
 ---
-[目录结构](https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io)。
+[完成后的目录结构](https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io)。
 
 
 
 ### 准备工作
 * 安装Node.js（Hexo基于NodeJs，其中npm工具对于网页部署很有用）
-  [下载地址](https://git-for-windows.github.io/)，下载推荐安装版本LTS。
+  [下载地址](https://nodejs.org/en/)，下载推荐安装版本LTS。
   下载好msi文件后，一路默认，唯独注意在Custom Setup这一步勾选 `Add to PATH` 添加到系统环境变量(新版本应该都已经默认勾选了)。
 * 安装Git（源码托管）
   [下载地址](https://git-for-windows.github.io/)，exe一路默认安装到底。
@@ -175,5 +175,10 @@ git add . #将本机添加的新的网页源码加入git缓存，准备提交源
 git commit -m "1105" #添加提交到github的commit，“”内可输入任何注释内容，一般情况下不可省略
 git push -u origin source #如果确定当前在source分支下，也可以仅仅执行 git push指令
 ```
-
+首次在cmd里push可能会要求输入账号密码，按照提示依次完成，第一行提示之后会弹窗要求确认并打开网页确认：
+```bash
+info: please complete authentication in your browser...
+Username for 'https://github.com':
+Password for 'https://HUSTGroup-2022@github.com':
+```
 More info: [github建立多分支](https://www.pianshen.com/article/8216193907/)
