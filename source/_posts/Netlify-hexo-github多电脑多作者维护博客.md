@@ -175,10 +175,11 @@ git add . #将本机添加的新的网页源码加入git缓存，准备提交源
 git commit -m "1105" #添加提交到github的commit，“”内可输入任何注释内容，一般情况下不可省略
 git push -u origin source #如果确定当前在source分支下，也可以仅仅执行 git push指令
 ```
-首次在cmd里push可能会要求输入账号密码，按照提示依次完成，第一行提示之后会弹窗要求确认并打开网页确认：
+可能会要求输入账号密码，按照提示依次完成，第一行提示之后会弹窗要求确认并打开网页确认：
 ```bash
 info: please complete authentication in your browser...
 Username for 'https://github.com':
 Password for 'https://HUSTGroup-2022@github.com':
 ```
+频繁需要输入账号密码应该是https协议的问题，请参考[更改协议](https://blog.csdn.net/whbing1471/article/details/52066688)
 More info: [github建立多分支](https://www.pianshen.com/article/8216193907/)
