@@ -233,8 +233,8 @@ class Solution:
       </tags>
   </entry>
   <entry>
-    <title>135.分发糖果(Hard)(C++&amp;Java)</title>
-    <url>/2020/10/31/349_%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</url>
+    <title>349.两个数组的交集</title>
+    <url>/2020/11/04/349_%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</url>
     <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays/">LeetCode 349.两个数组的交集</a><br>难度：<code>简单</code></p>
 <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定两个数组，编写一个函数来计算它们的交集。</p>
 <h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><blockquote>
@@ -342,7 +342,7 @@ class Solution:
       </tags>
   </entry>
   <entry>
-    <title>218.滑动窗口的最大值(Hard)(Python)</title>
+    <title>239.滑动窗口的最大值(Hard)(Python)</title>
     <url>/2020/11/04/239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC-Hard/</url>
     <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a>，滑动窗口最大值，难度：<code>困难</code>。</p>
 <h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。<br>滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。能否在线性时间内解决这个问题？</p>
