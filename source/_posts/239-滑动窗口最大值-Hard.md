@@ -1,12 +1,14 @@
 ---
-title: 218.滑动窗口的最大值(Hard)(Python)
-date: 2020-11-4 10:06:53
+title: 239.滑动窗口的最大值(Hard)(Python)
+date: 2020-11-04 10:06:53
 categories:
 - LeetCode
-- 动态规划；单调队列
+- 动态规划
+- 单调队列
 tags:
 - LeetCode
-- 动态规划；单调队列
+- 动态规划
+- 单调队列
 ---
 [LeetCode 239](https://leetcode-cn.com/problems/sliding-window-maximum)，滑动窗口最大值，难度：`困难`。
 
