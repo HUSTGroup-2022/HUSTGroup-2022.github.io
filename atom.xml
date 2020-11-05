@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hust2022.cn/"/>
-  <updated>2020-11-03T13:23:46.747Z</updated>
+  <updated>2020-11-05T06:51:25.079Z</updated>
   <id>https://www.hust2022.cn/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>218.滑动窗口的最大值(Hard)(Python)</title>
+    <link href="https://www.hust2022.cn/2020/11/04/239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC-Hard/"/>
+    <id>https://www.hust2022.cn/2020/11/04/239-滑动窗口最大值-Hard/</id>
+    <published>2020-11-04T02:06:53.000Z</published>
+    <updated>2020-11-05T06:51:25.079Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a>，滑动窗口最大值，难度：<code>困难</code>。</p><h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。<br>滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。能否在线性时间内解决这个问题？</p><p>More info: <a href="https://leetcode-cn.com/problems/the-skyline-problem/">原题</a></p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><blockquote><p>输入:  nums = [1,3,-1,-3,5,3,6,7], 和 k = 3</p></blockquote><blockquote><p>输出:  [3,3,5,5,6,7]</p></blockquote><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>1、首先想到的是暴力解法，滑动窗口，每次在窗口内扫描最大值，这样的复杂度是O(Nk)。</p><p>2、题目要求的是线性时间，那么从暴力解法中寻求优化方法。考虑到每次窗口内扫描最大值很耗费时间，则使用一个数据结构来储存当前窗口的最大值。<br>同时为了保证数据结构中存储的元素不至于超出窗口长度，存储元素的索引来判断是否超出长度。因为每次要取出最大值，所以考虑单调栈。<br>这个数据结构需要弹出元素，而单调栈默认栈顶是最大值，为了偷懒，使用单调的双端队列，其插入和弹出都是O(1)时间，所以整体上是线性时间。</p><p>3、动态规划：参考官方题解。把数组按窗口长度分块，对每个块求两个动态数组————从块开始往块结尾的最大值left和从块结尾往块开始的最大值right。<br>这样的两个数组能够全部表示出相邻两个块的最大值信息。对于窗口(i, i+k-1)，它的最大值即为max( right[i], left[i+k-1] )。<br>可以这么理解，若窗口在一个块内，那么right[i]和left[i+k-1]都代表了这个块也就是这个窗口的最大值；若窗口跨越了两个相邻块，<br>那么right[i]表示左边块部分的最大值，left[i+k-1]表示右边块的最大值，两个中较大的值则代表当前窗口的最大值。</p><h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><pre><code class="python">&quot;&quot;&quot;代码未经优化，看懂就行！！！&quot;&quot;&quot;from collections import dequefrom typing import Listclass Solution:    &quot;&quot;&quot;    解法一：暴力求解，双层for循环    &quot;&quot;&quot;    def maxSlidingWindow(self, nums: List[int], k: int) -&gt; List[int]:        res = []        for i in range(len(nums) - k + 1):            cur = nums[i : i+k]            max = cur[0]            for j in cur:                if j &gt; max:                    max = j            res.append(max)        return res    &quot;&quot;&quot;    滑动窗口的经典解法：单调队列    这里使用双端队列，因为是滑动窗口，所以单调队列保存的是元素的索引，而不是元素本身    使用前k个元素初始化双端队列，    滑动，去掉超出窗口长度的元素，去掉小于当前元素的所有值，因为如果比当前值小，必不会是当前窗口的最大值    单调队列的头部对应的就是最大值    &quot;&quot;&quot;    def maxSlidingWindow2(self, nums: List[int], k: int) -&gt; List[int]:        res = []        MonotoneQueue = deque()        # 初始化双端队列        for i in range(k):            if not MonotoneQueue:                MonotoneQueue.append(i)            else:                while MonotoneQueue and nums[i] &gt; nums[MonotoneQueue[-1]]:                    MonotoneQueue.pop()                MonotoneQueue.append(i)        res.append(nums[MonotoneQueue[0]])        # 从第k个数开始遍历数组        for i in range(k, len(nums)):            # 排除超出窗长度的元素            while (i - MonotoneQueue[0]) &gt; k:                MonotoneQueue.popleft()            # 排除所有比当前元素小的值，再插入当前值，维持队列的单调性            while MonotoneQueue and nums[i] &gt; nums[MonotoneQueue[-1]]:                MonotoneQueue.pop()            MonotoneQueue.append(i)            # 将队头元素汇入结果            res.append(nums[MonotoneQueue[0]])        return res    &quot;&quot;&quot;    解法三：动态规划。参考官方题解，那个图很可以理解了，但还是比较难想，典型解法是单调栈或者单调队列    &quot;&quot;&quot;    def maxSlidingWindow3(self, nums: List[int], k: int) -&gt; List[int]:        if not nums:            return []        if k == 1:            return nums        # step 1: 将nums按k分块，然后构建每块从左到右、从右到左的最大值        left, right = [nums[0]]*len(nums), [nums[-1]]*len(nums)     # 用来记录从左到右、从右到左不同块内的最大值        for i in range(len(nums)):            if i%k == 0:    # 一个块的开始                left[i] = nums[i]            else:                left[i] = nums[i] if nums[i] &gt; left[i-1] else left[i-1]        for j in range(len(nums)-2, -1, -1):            if (j+1)%k == 0:    # 一个块的尾部                right[j] = nums[j]            else:                right[j] = nums[j] if nums[j] &gt; right[j+1] else right[j+1]        # step 2: 得出结果。left和right两个数组记录了相邻两个块的所有信息        # 若窗口在块内，从左往右和从右往左正好囊括该块        # 若窗口跨越两个相邻块，那么从右往左和从左往右可以囊括该块        res = []        for i in range(len(nums)-k+1):            res.append( max(right[i], left[i+k-1]) )        return res</code></pre><p>More info: <a href="https://leetcode-cn.com/problems/sliding-window-maximum">LeetCode 239</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/sliding-window-maximum&quot;&gt;LeetCode 239&lt;/a&gt;，滑动窗口最大值，难度：&lt;code&gt;困难&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;问题解析&quot;&gt;&lt;a href=
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="https://www.hust2022.cn/categories/LeetCode/"/>
+    
+      <category term="动态规划" scheme="https://www.hust2022.cn/categories/LeetCode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="单调队列" scheme="https://www.hust2022.cn/categories/LeetCode/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
+    
+    
+      <category term="LeetCode" scheme="https://www.hust2022.cn/tags/LeetCode/"/>
+    
+      <category term="动态规划" scheme="https://www.hust2022.cn/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="单调队列" scheme="https://www.hust2022.cn/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
   
   <entry>
     <title>test</title>
@@ -107,6 +141,38 @@
       <category term="LeetCode" scheme="https://www.hust2022.cn/tags/LeetCode/"/>
     
       <category term="贪心算法" scheme="https://www.hust2022.cn/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>135.分发糖果(Hard)(C++&amp;Java)</title>
+    <link href="https://www.hust2022.cn/2020/10/31/349_%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/"/>
+    <id>https://www.hust2022.cn/2020/10/31/349_两个数组的交集/</id>
+    <published>2020-10-31T11:06:53.000Z</published>
+    <updated>2020-11-05T06:50:54.592Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays/">LeetCode 349.两个数组的交集</a><br>难度：<code>简单</code></p><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定两个数组，编写一个函数来计算它们的交集。</p><h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><blockquote><p>输入：nums1 = [1,2,2,1], nums2 = [2,2]<br>输出：[2]</p></blockquote><h4 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h4><blockquote><p>输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>输出：[9,4]</p></blockquote><h4 id="原函数"><a href="#原函数" class="headerlink" title="原函数"></a>原函数</h4><pre><code class="java">    public int[] intersection(int[] nums1, int[] nums2) &#123;    &#125;</code></pre><hr><p>###题解</p><p>####思路1：利用集合去重</p><p>此思路是朴素的思路，可从最基本的暴力解法思路演变而来。核心是两次比较。</p><p>思路演变的过程：</p><p><strong>（1）暴力</strong><br>设置答案数组ans[]。遍历nums2，对nums2中的每个数，查询其在nums1中是否存在（第1次比较）；若存在则查看ans数组中是否有已经有此值（第2次比较），若无则添加进ans数组中。最终返回部分ans。<br>此思路在实际的代码中还会存在一些边边角角的问题，比如答案数组的规模不确定等，需要完善。读者可以自己尝试。</p><p><strong>（2）利用集合</strong><br>鉴于（1）中每次比较的时间复杂度为O(n)，综合时间复杂度为O(n^m)，我们可以用集合代替数组来完成比较，以降低时间复杂度。可以将nums1和nums2中<strong>较长的</strong>那一个存放在Set中，以优化第1次比较的时间。</p><p><strong>（3）使用多个集合</strong><br>既然都已经使用集合了，为何不用集合来存储答案呢？这样可以优化第2次比较的时间，还避免了答案长度可变的问题。<br>至此，代码已经呼之欲出了。</p><p>代码如下：（为了风格统一，对输入的两个数组都采用了集合存储，实际上可以只存储较长的那个数组）</p><pre><code class="java">    //双集合去重    public int[] intersection(int[] nums1, int[] nums2) &#123;        Set&lt;Integer&gt; set1 = new HashSet&lt;&gt;();        Set&lt;Integer&gt; set2 = new HashSet&lt;&gt;();        for (int i = 0; i &lt; nums1.length; i++) &#123;            set1.add(nums1[i]);        &#125;        for (int i = 0; i &lt; nums2.length; i++) &#123;            set2.add(nums2[i]);        &#125;        return getIntersection(set1, set2);    &#125;    private int[] getIntersection(Set&lt;Integer&gt; set1, Set&lt;Integer&gt; set2) &#123;        if (set1.size() &lt; set2.size()) &#123;            return getIntersection(set2, set1);//遇到需要对称处理的操作时，这是一个比较好的代码思路        &#125;        Set&lt;Integer&gt; nums = new HashSet&lt;&gt;();        for (int num: set2) &#123;            if (set1.contains(num)) nums.add(num);        &#125;        int[] ans = new int[nums.size()];        int i = 0;        for (int num: nums) &#123;            ans[i++] = num;        &#125;        return ans;    &#125;</code></pre><p>####思路2：先排序，再用双指针遍历</p><p>对于涉及数组的题目，对数组先进行排序往往能起到事半功倍的效果。<br>当两个数组排好序后，比较的思路也很明显了：</p><pre><code>设指针p、q分别指向两个数组的首位置；依次比较nums1[p]和nums[q],有以下几种情况：    （1）nums1[p] &gt; nums[q],则q++;    （2）nums1[p] &lt; nums[q],则p++;    （3）nums1[p] = nums[q],说明是交集的数字，则进行下一步去重操作：        若答案中已存在此数字，则p++, q++;        若答案中无此数字，则将其添加进答案中;</code></pre><p>根据此思路可以轻易地写出以下代码。</p><pre><code class="java">    public int[] intersection(int[] nums1, int[] nums2) &#123;        Arrays.sort(nums1);        Arrays.sort(nums2);        int p = 0, q = 0;        List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();        int pre = -1;        while (p &lt; nums1.length &amp;&amp; q &lt; nums2.length) &#123;            if (nums1[p] &lt; nums2[q]) &#123;                p++;            &#125;            else if (nums1[p] &gt; nums2[q]) &#123;                q++;            &#125;            else &#123;                if (nums1[p] != pre) &#123;                    pre = nums1[p];                    nums.add(pre);                &#125;                p++;                q++;            &#125;        &#125;        int[] ans = new int[nums.size()];        int i = 0;        for (int num: nums) &#123;            ans[i++] = num;        &#125;        return ans;    &#125;</code></pre><p>就本题而言，思路2的时间复杂度是不及思路1的，但空间复杂度思路2更优。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/intersection-of-two-arrays/&quot;&gt;LeetCode 349.两个数组的交集&lt;/a&gt;&lt;br&gt;难度：&lt;code&gt;简单&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;问题描述&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="https://www.hust2022.cn/categories/LeetCode/"/>
+    
+    
+      <category term="LeetCode" scheme="https://www.hust2022.cn/tags/LeetCode/"/>
+    
+      <category term="集合" scheme="https://www.hust2022.cn/tags/%E9%9B%86%E5%90%88/"/>
+    
+      <category term="数组" scheme="https://www.hust2022.cn/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="双指针" scheme="https://www.hust2022.cn/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
