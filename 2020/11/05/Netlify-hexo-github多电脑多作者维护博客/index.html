@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>135.分发糖果(Hard)(C++&amp;Java) | Hexo</title>
-  <meta name="keywords" content=" LeetCode , 贪心算法 ">
-  <meta name="description" content="135.分发糖果(Hard)(C++&amp;Java) | Hexo">
+  <title>Netlify+hexo+github多电脑多作者维护博客 | Hexo</title>
+  <meta name="keywords" content=" Netlify , hexo ">
+  <meta name="description" content="Netlify+hexo+github多电脑多作者维护博客 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="完成后的目录结构。 准备工作 安装Node.js（Hexo基于NodeJs，其中npm工具对于网页部署很有用）下载地址，下载推荐安装版本LTS。下载好msi文件后，一路默认，唯独注意在Custom Setup这一步勾选 Add to PATH 添加到系统环境变量(新版本应该都已经默认勾选了)。 安装Git（源码托管）下载地址，exe一路默认安装到底。  安装hexohexo用于部署本博客。首先创建">
 <meta property="og:type" content="article">
@@ -325,9 +325,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-135-分发糖果-Hard" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Netlify-hexo-github多电脑多作者维护博客" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">135.分发糖果(Hard)(C++&amp;Java)</h1>
+        <h1 class="article-title">Netlify+hexo+github多电脑多作者维护博客</h1>
     
     <div class="article-meta">
         
@@ -337,9 +337,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="LeetCode">LeetCode</a> > 
-            
-            <a  data-rel="LeetCode&lt;---&gt;贪心算法">贪心算法</a>
+            <a  data-rel="前端">前端</a>
             
         </span>
         
@@ -347,21 +345,21 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">LeetCode</a>
+            <a class="color3">Netlify</a>
             
-            <a class="color5">贪心算法</a>
+            <a class="color5">hexo</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-10-31 20:35:58'>2020-10-31 19:06</time>
+            Created At : <time class="date" title='Updated At: 2020-11-05 17:14:24'>2020-11-05 16:06</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:614</span>
+        <span>Count:1.6k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -380,7 +378,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="toc-text">问题解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="toc-text">示例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B2"><span class="toc-text">示例2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E5%AE%9E%E7%8E%B0"><span class="toc-text">C++实现</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgithub"><span class="toc-text">配置github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clone%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E6%88%96%E6%8B%89%E5%8F%96%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%88%B0%E6%9C%AC%E5%9C%B0%E7%94%B5%E8%84%91"><span class="toc-text">clone博客源码或拉取博客更新到本地电脑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2"><span class="toc-text">更新博客</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -396,41 +394,130 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a>，分发糖果问题，难度：<code>困难</code>。</p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>老师想给孩子们分发糖果，有 N 个孩子站成了一条直线，老师会根据每个孩子的表现，预先给他们评分。<br>你需要按照以下要求，帮助老师给这些孩子分发糖果：</p>
-<p>每个孩子至少分配到 1 个糖果。<br>相邻的孩子中，评分高的孩子必须获得更多的糖果。<br>那么这样下来，老师至少需要准备多少颗糖果呢？</p>
-<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">原题</a></p>
-<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><blockquote>
-<p>输入:  [1,0,2]<br>输出:  5<br>解释:  你可以分别给这三个孩子分发 2、1、2 颗糖果。</p>
-</blockquote>
-<h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><blockquote>
-<p>输入:  [1,2,2]<br>输出:  4<br>解释:  你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</p>
-</blockquote>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><code>贪心算法</code>采用贪心的策略，保证每次<code>局部的操作都是当前最优的</code>，从而使最终一步步累计得到的结果是<code>全局最优</code>的。<br>对于本题，贪心策略通过两次遍历实现：<br>所有孩子的糖果数初始化为1，<code>从左往右遍历一遍</code>，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1；<br>再<code>从右往左遍历一遍</code>，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1。</p>
-<ul>
-<li>通过这两次遍历，即将每个孩子都和左右孩子进行了比较。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一侧的大小关系。<br>在样例中，我们初始化糖果分配为<code>[1,1,1]</code>，第一次遍历更新后的结果为<code>[1,1,2]</code>，第二次遍历更新后的结果为<code>[2,1,2]</code>。</li>
+        <p><a target="_blank" rel="noopener" href="https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io">完成后的目录结构</a>。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>安装Node.js（Hexo基于NodeJs，其中npm工具对于网页部署很有用）<br><a target="_blank" rel="noopener" href="https://nodejs.org/en/">下载地址</a>，下载推荐安装版本LTS。<br>下载好msi文件后，一路默认，唯独注意在Custom Setup这一步勾选 <code>Add to PATH</code> 添加到系统环境变量(新版本应该都已经默认勾选了)。</li>
+<li>安装Git（源码托管）<br><a target="_blank" rel="noopener" href="https://git-for-windows.github.io/">下载地址</a>，exe一路默认安装到底。</li>
 </ul>
-<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><pre><code class="cpp">int candy(vector&lt;int&gt;&amp; ratings) &#123;
-    int size=ratings.size();
-    vector&lt;int&gt; num(size,1);
-    for(int i=1;i&lt;size;i++)
-    &#123;
-        if(ratings[i]&gt;ratings[i-1])
-        &#123;
-            num[i]=num[i-1]+1;
-        &#125;
-    &#125;
-    for(int i=size-1;i&gt;0;i--)
-    &#123;
-        if(ratings[i-1]&gt;ratings[i])
-        &#123;
-            if(num[i-1]&gt;num[i]) continue;
-            else num[i-1]=num[i]+1;
-        &#125;
-    &#125;
-    return accumulate(num.begin(),num.end(),0);
-&#125;</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/candy/">LeetCode 135</a></p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>hexo用于部署本博客。<br>首先创建一个新的文件夹，用于放置hexo的基本内容，在cmd窗口下cd到改目录下。</p>
+<p>依次执行：</p>
+<pre><code class="bash">npm i -g hexo
+hexo -v
+</code></pre>
+<p>查看是否安装完成，此时cmd窗口输出：</p>
+<pre><code class="bash">(base) F:\xuhao\hexo&gt;npm i -g hexo
+C:\Users\Administrator\AppData\Roaming\npm\hexo -&gt; C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\hexo
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules\hexo\node_modules\chokidar\node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)
+
++ hexo@5.2.0
+added 90 packages from 357 contributors in 39.189s
+
+(base) F:\xuhao\hexo&gt;hexo -v
+hexo-cli: 4.2.0
+os: Windows_NT 10.0.17134 win32 x64
+node: 14.15.0
+v8: 8.4.371.19-node.17
+uv: 1.40.0
+zlib: 1.2.11
+brotli: 1.0.9
+ares: 1.16.1
+modules: 83
+nghttp2: 1.41.0
+napi: 7
+llhttp: 2.1.3
+openssl: 1.1.1g
+cldr: 37.0
+icu: 67.1
+tz: 2020a
+unicode: 13.0
+</code></pre>
+<p>利用github部署前还需要安装Deployer部署器，否则会报如下错误</p>
+<pre><code class="bash">ERROR Deployer not found: git
+</code></pre>
+<p>继续在cmd窗口输入如下命令hexo-deployer-git</p>
+<pre><code class="bash">npm install hexo-deployer-git --save
+</code></pre>
+<h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><p>在本地创建ssh key，简化之后git提交代码，在Cmd中输入，注意替换成自己的邮箱：</p>
+<pre><code class="bash">ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;
+</code></pre>
+<p>一路回车到底，cmd提示在<code>C:\Users\Administrator/.ssh/id_rsa.pub.</code>路径下生成了id_rsa.pub.的公钥，找到该文件，以记事本形式打开，复制里面的key。<br>来到Github页面，登录自己的github账号之后，在右上角区域找到settings，左边选择<code>SSH and GPG keys</code>，然后New SSH key，title随便填写，粘贴id_rsa.pub里面的key，保存。<br>为了验证是否成功，在cmd页面输入</p>
+<pre><code class="bash">ssh -T git@github.com
+</code></pre>
+<p>会提示</p>
+<pre><code class="bash">Hi HUSTGroup-2022! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+<p>代表已经连接成功。<br>此时已基本大功告成，但如果此时通过运行$ hexo deploy运行网站，会报出如下错误，意思是我们还没有设置user.email和user.name。</p>
+<pre><code class="bash">*** Please tell me who you are.
+
+Run
+
+  git config --global user.email &quot;you@example.com&quot;
+  git config --global user.name &quot;Your Name&quot;
+
+to set your account&#39;s default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got &#39;Him@hongxiaoxin.(none)&#39;)
+error: src refspec HEAD does not match any.
+error: failed to push some refs to &#39;git@github.com:ghxiaoxiao/ghxiaoxiao.github.io&#39;
+FATAL Something&#39;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
+Error: Spawn failed
+    at ChildProcess.&lt;anonymous&gt; (d:\hexo\blog\node_modules\hexo-util\lib\spawn.js:52:19)
+    at emitTwo (events.js:126:13)
+    at ChildProcess.emit (events.js:214:7)
+    at ChildProcess.cp.emit (d:\hexo\blog\node_modules\cross-spawn\lib\enoent.js:40:29)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:198:12)
+</code></pre>
+<p>因此，进行如下设置，其中email是你的GitHub绑定的邮箱，用户名是你的GitHub用户名。</p>
+<pre><code class="bash">git config --global user.email &quot;hustgroup_2022@163.com&quot;
+git config --global user.name &quot;HUSTGroup-2022&quot;
+</code></pre>
+<h3 id="clone博客源码或拉取博客更新到本地电脑"><a href="#clone博客源码或拉取博客更新到本地电脑" class="headerlink" title="clone博客源码或拉取博客更新到本地电脑"></a>clone博客源码或拉取博客更新到本地电脑</h3><p>对于多电脑多作者维护博客模式，本机第一次进行博客维护时，应该首先clone托管在github上的博客源码。注意，<code>除了第一次，此后无需执行此clone步骤</code>。<br>在cmd窗口下，切换到自己希望存放博客源码的目录，执行：</p>
+<pre><code class="bash">git clone https://github.com/HUSTGroup-2022/HUSTGroup-2022.github.io
+</code></pre>
+<p>然后切换到该源码目录下，可以使用TAB键补全地址：</p>
+<pre><code class="bash">cd HUSTGroup-2022.github.io
+</code></pre>
+<p><code>对于非第一次进行博客维护的主机，直接执行如下命令而不必执行clone命令，从github拉取最新的更新（因为其他电脑的其他作者可能更新了源码并且托管在github上)：</code><br>首先执行</p>
+<pre><code class="bash">git branch
+</code></pre>
+<p>查看当前所在github 仓库的分支，若为<code>* source</code>则正确。因为我们在该博客仓库下建立了两个分支，分别为master和source，source中用于存放源码，master中用于存放静态网页。<br>若非source分支，输入</p>
+<pre><code class="bash">git checkout source
+git branch
+</code></pre>
+<p>此时已切换到source分支。<br>最后执行</p>
+<pre><code class="bash">git pull
+</code></pre>
+<p>拉取更新（可能由其它电脑的其他作者更新了博客源码）。</p>
+<h3 id="更新博客"><a href="#更新博客" class="headerlink" title="更新博客"></a>更新博客</h3><p>在本地HUSTGroup-2022.github.io文件夹下，进入source/_posts/文件夹，可以看到里面的.md（markdown文件）存放了网页的markdown源码。<br>在cmd窗口HUSTGroup-2022.github.io目录下，执行（<code>也只需要第一次配置的时候执行，以后都不需要</code>）</p>
+<pre><code class="bash">npm install
+</code></pre>
+<p>安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。<br><code>原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行</code><br>然后执行</p>
+<pre><code class="bash">hexo new 1105testnew
+</code></pre>
+<p>建立一个新的.md文件（文件名自取）用于更新博客，可以在source/_posts/文件夹下看到多出了一个1105testnew.md文件。<br>编辑该文件，输入自己希望更新的网页内容。在3-hexo主题下添加多个categories或者tags标签应该换行，以’-‘符号打头，例如：</p>
+<pre><code class="bash">categories:
+
+- 前端
+tags:
+
+- Netlify
+- hexo
+</code></pre>
+<p>最后，当.md文件更新完后，生成网页，将网页部署到github，同时将源码托管到github。依次执行（#后面是注释）：</p>
+<pre><code class="bash">hexo g #根据更新的源码生成新的网页
+hexo deploy #根据生成的网页部署到github，同时由Netlify维护的博客网站会得到更新
+git add . #将本机添加的新的网页源码加入git缓存，准备提交源码到github
+git commit -m &quot;1105&quot; #添加提交到github的commit，“”内可输入任何注释内容，一般情况下不可省略
+git push -u origin source #如果确定当前在source分支下，也可以仅仅执行 git push指令
+</code></pre>
+<p>可能会要求输入账号密码，按照提示依次完成，第一行提示之后会弹窗要求确认并打开网页确认：</p>
+<pre><code class="bash">info: please complete authentication in your browser...
+Username for &#39;https://github.com&#39;:
+Password for &#39;https://HUSTGroup-2022@github.com&#39;:
+</code></pre>
+<p>频繁需要输入账号密码应该是https协议的问题，请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/whbing1471/article/details/52066688">更改协议</a><br>More info: <a target="_blank" rel="noopener" href="https://www.pianshen.com/article/8216193907/">github建立多分支</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 hustgroup_2022@163.com </span>
