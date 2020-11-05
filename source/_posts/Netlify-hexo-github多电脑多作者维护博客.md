@@ -147,11 +147,12 @@ git pull
 
 ### 更新博客
 在本地HUSTGroup-2022.github.io文件夹下，进入source/_posts/文件夹，可以看到里面的.md（markdown文件）存放了网页的markdown源码。
-在cmd窗口HUSTGroup-2022.github.io目录下，执行
+在cmd窗口HUSTGroup-2022.github.io目录下，执行（`也只需要第一次配置的时候执行，以后都不需要`）
 ```bash
 npm install
 ```
 安装package.json中依赖的包（由网站创建时所依赖或者维护加入的记录）。
+`原则上，在某台电脑上上述配置均完成后，以后更新博客只需要从此处开始执行`
 然后执行
 ```bash
 hexo new 1105testnew
